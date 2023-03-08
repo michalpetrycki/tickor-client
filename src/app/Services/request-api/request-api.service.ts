@@ -33,7 +33,7 @@ export class RequestApiService<ResponseType> {
     return this.http.post<ResponseType>(request.getEndpoint(), request, headers);
   }
 
-  public requestFirstResult(requestBody: EndpointRequest): Observable<ResponseType | undefined> {
+  public requestFirstResult(requestBody: EndpointRequest): Observable<ResponseType> {
     type RequestType = EndpointRequest;
     const request = requestBody as RequestType;
     const headers = { 'Authorization': this.authService.token };

@@ -1,1 +1,44 @@
-<p>tab-menu works!</p>
+<div id="container">
+    <div id="tabs">
+        <ejs-tab id="element">
+            <e-tabitems>
+                <e-tabitem>
+                    <ng-template #headerText>
+                        <div>
+                            Projects
+                        </div>
+                    </ng-template>
+                    <ng-template #content>
+                        <app-projects></app-projects>
+                    </ng-template>
+                </e-tabitem>
+                <e-tabitem>
+                    <ng-template #headerText>
+                        <div>
+                            Issues
+                        </div>
+                    </ng-template>
+                    <ng-template #content>
+                        <app-issues></app-issues>
+                    </ng-template>
+                </e-tabitem>
+                <e-tabitem>
+                    <ng-template #headerText>
+                        <div>
+                            Members
+                        </div>
+                    </ng-template>
+                    <ng-template #content>
+                        <app-members></app-members>
+                    </ng-template>
+                </e-tabitem>
+            </e-tabitems>
+          </ejs-tab>
+    </div>
+    <div id="quick-search-container">
+        <app-quick-search></app-quick-search>
+    </div>
+    <div id="content">
+        <p>some content here</p>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { ResponseWrapper } from 'src/app/Objects/API/ResponseWrapper.ts';
+import { ResponseWrapper } from 'src/app/Objects/API/ResponseWrapper';
 import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
 import { map } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ export class UnwrappingService {
 
   constructor(private httpClient: HttpClient) { }
 
-  post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<PaginatedResponse<T | unknown>> {
+  post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<PaginatedResponse<T>> {
     return this.httpClient.post<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, body, headers)
       .pipe(
         map(res => {

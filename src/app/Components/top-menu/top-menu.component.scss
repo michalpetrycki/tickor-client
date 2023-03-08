@@ -1,0 +1,45 @@
+:host{
+    height: 1.8em;
+    display: inline-block;
+    width: 100%;
+    font-size: 80%;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: 0;
+}
+
+li {
+    display: inline-block;
+    margin-right: 1.4em;
+    margin-top: 0;
+}
+
+li.e-list-item {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+p {
+    display: inline-block;
+    margin-top: 0;
+}
+
+#account {
+    float: right;
+}
+
+#dropdown {
+    float: left;
+}
+
+form {
+    display: flex;
+    margin-top: .8em;
+    margin-left: .8em;
+}
+
+form > button {
+    margin-left: .8em;
+}

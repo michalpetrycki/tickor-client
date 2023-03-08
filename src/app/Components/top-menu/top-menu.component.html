@@ -1,1 +1,29 @@
-<p>top-menu works!</p>
+<div id="account">
+    <ul>
+        <li *ngFor="let item of accountItems">
+            <p>{{item}}</p>
+        </li>
+    </ul>
+</div>
+<div id="dropdown">
+    <form [formGroup]="clientSelectionForm" (ngSubmit)="submitClientForm()">
+        <label for="clientDdl">Select client</label>
+        <ejs-dropdownlist 
+            #clientDdl
+            id="clientDdl" 
+            name="clientDdl" 
+            [dataSource]="filteredClients" 
+            [fields]="fields" 
+            placeholder="Select a client" 
+            [formControlName]="'clientDdl'"
+            [allowFiltering]='true' 
+            (filtering)='onFiltering($event)'
+            (close)="repopulateDropdown($event)"
+            (select)="selectionChange($event)"></ejs-dropdownlist>
+        <button ejs-button 
+            type="submit" 
+            name="submit-btn">
+            Go
+        </button>
+    </form>
+</div>
