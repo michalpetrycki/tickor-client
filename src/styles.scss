@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+// @import 'ej2-buttons/styles/bootstrap5.scss';
+// @import 'ej2-buttons/styles/bootstrap5-dark.scss';
+// @import 'ej2-buttons/styles/fluent.scss';
+// @import 'ej2-buttons/styles/fluent-dark.scss';
+// @import 'ej2-buttons/styles/material.scss';
+// @import 'ej2-buttons/styles/material-dark.scss';
+// @import 'ej2-buttons/styles/tailwind.scss';
+// @import 'ej2-buttons/styles/fabric.scss';
+// @import 'ej2-buttons/styles/fabric-dark.scss';
+// @import 'ej2-buttons/styles/highcontrast.scss';
+
+@import 'ej2-inputs/styles/tailwind-dark.scss';
+@import 'ej2-base/styles/tailwind-dark.scss';
+@import 'ej2-angular-base/styles/tailwind-dark.scss';
+@import 'ej2-buttons/styles/tailwind-dark.scss';
+@import 'ej2-angular-buttons/styles/tailwind-dark.scss';
+@import 'ej2-popups/styles/tailwind-dark.scss';
+@import 'ej2-navigations/styles/tailwind-dark.scss';
+@import 'ej2-angular-navigations/styles/tailwind-dark.scss';
+@import 'ej2-layouts/styles/tailwind-dark.scss';
+@import 'ej2-angular-dropdowns/styles/tailwind-dark.scss';
+@import 'ej2-dropdowns/styles/tailwind-dark.scss';
+@import 'ej2-lists/styles/tailwind-dark.scss';
+@import 'ej2-splitbuttons/styles/tailwind-dark.scss';
+
+
+html {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
+}
