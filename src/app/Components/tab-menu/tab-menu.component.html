@@ -2,38 +2,16 @@
     <div id="tabs">
         <ejs-tab id="element">
             <e-tabitems>
-                <e-tabitem>
+                <e-tabitem *ngFor="let tab of tabs">
                     <ng-template #headerText>
-                        <div>
-                            Projects
+                        <div routerLink="{{tab.path}}">
+                            {{tab.title}}
                         </div>
-                    </ng-template>
-                    <ng-template #content>
-                        <app-projects></app-projects>
-                    </ng-template>
-                </e-tabitem>
-                <e-tabitem>
-                    <ng-template #headerText>
-                        <div>
-                            Issues
-                        </div>
-                    </ng-template>
-                    <ng-template #content>
-                        <app-issues></app-issues>
-                    </ng-template>
-                </e-tabitem>
-                <e-tabitem>
-                    <ng-template #headerText>
-                        <div>
-                            Members
-                        </div>
-                    </ng-template>
-                    <ng-template #content>
-                        <app-members></app-members>
                     </ng-template>
                 </e-tabitem>
             </e-tabitems>
           </ejs-tab>
+          <router-outlet></router-outlet>
     </div>
     <div id="quick-search-container">
         <app-quick-search></app-quick-search>

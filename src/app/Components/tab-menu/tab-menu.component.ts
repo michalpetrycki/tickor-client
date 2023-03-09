@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabMenuComponent implements OnInit {
 
-  constructor() { }
+  tabs: { path: string, title: string }[] = [];
+
+  constructor() {
+    this.tabs = [
+      { path: '/projects', title: 'Projects' },
+      { path: '/members', title: 'Members' },
+      { path: '/issues', title: 'Issues' }
+    ];
+  }
 
   ngOnInit(): void {
   }
