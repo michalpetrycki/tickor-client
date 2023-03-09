@@ -7,7 +7,7 @@
 </div>
 <div id="dropdown">
     <form [formGroup]="clientSelectionForm" (ngSubmit)="submitClientForm()">
-        <label for="clientDdl">Select client</label>
+        <label id="clientDdlLbl" for="clientDdl">Client:</label>
         <ejs-dropdownlist 
             #clientDdl
             id="clientDdl" 
@@ -18,7 +18,7 @@
             [formControlName]="'clientDdl'"
             [allowFiltering]='true' 
             (filtering)='onFiltering($event)'
-            (close)="repopulateDropdown($event)"
+            (close)="repopulateDropdown()"
             (select)="selectionChange($event)"></ejs-dropdownlist>
         <button ejs-button 
             type="submit" 

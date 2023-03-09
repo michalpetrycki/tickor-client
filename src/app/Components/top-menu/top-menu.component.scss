@@ -1,3 +1,5 @@
+@import 'colours';
+
 :host{
     height: 1.8em;
     display: inline-block;
@@ -14,11 +16,6 @@ li {
     display: inline-block;
     margin-right: 1.4em;
     margin-top: 0;
-}
-
-li.e-list-item {
-    padding-right: 0;
-    margin-right: 0;
 }
 
 p {
@@ -42,4 +39,42 @@ form {
 
 form > button {
     margin-left: .8em;
+}
+
+form > #clientDdlLbl {
+    margin-top: .5em;
+}
+
+form > #clientDdl {
+    margin-left: .6em;
+}
+
+// drop down list control
+#clientDdl > .e-ddl.e-input-group.e-control-wrapper .e-input {
+    color: $colour-burnt-sienna;
+    background: $colour-paynes-gray;
+}
+
+// selected item
+#clientDdl_popup > .e-dropdownbase .e-list-item.e-item-focus, .e-dropdownbase .e-list-item.e-active, .e-dropdownbase .e-list-item.e-active.e-hover, .e-dropdownbase .e-list-item.e-hover {
+    background-color: #1f9c99;
+    color: #2319b8;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#clientDdl_popup > .e-dropdownbase .e-list-item {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+// drop down list
+#clientDdl > .e-dropdownbase .e-list-item, .e-dropdownbase .e-list-item.e-item-focus {
+    background-color: $colour-paynes-gray;
+    color: $colour-burnt-sienna;
+    min-height: 29px;
+}
+
+#clientDdl > .e-content .e-dropdownbase {
+    overflow: visible !important;
 }

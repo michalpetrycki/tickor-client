@@ -34,7 +34,7 @@ export class TopMenuComponent implements OnInit {
     this.fetchClients();
   }
 
-  repopulateDropdown(event: CloseEvent) {
+  repopulateDropdown() {
     this.filteredClients = this.clients;
   }
 

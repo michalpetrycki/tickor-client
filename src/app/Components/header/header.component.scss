@@ -1,5 +1,8 @@
+@import 'colours';
+@import 'sizes';
+
 #header-content {
-    height: 10%;
+    height: $header-height;
     width: 100%;
-    background-color: red;
+    background-color: $colour-burnt-sienna;
 }

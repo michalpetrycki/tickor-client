@@ -26,16 +26,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/stylings/styles.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/@syncfusion"
+                "node_modules/@syncfusion",
+                "src/stylings"
               ]
             },
             "vendorChunk": true,
@@ -101,16 +101,16 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/stylings/styles.scss"
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/@syncfusion"
+                "node_modules/@syncfusion",
+                "src/stylings"
               ]
             }
           }

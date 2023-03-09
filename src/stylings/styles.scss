@@ -10,6 +10,7 @@
 // @import 'ej2-buttons/styles/fabric-dark.scss';
 // @import 'ej2-buttons/styles/highcontrast.scss';
 
+@import 'colours';
 @import 'ej2-inputs/styles/tailwind-dark.scss';
 @import 'ej2-base/styles/tailwind-dark.scss';
 @import 'ej2-angular-base/styles/tailwind-dark.scss';
@@ -25,7 +26,6 @@
 @import 'ej2-splitbuttons/styles/tailwind-dark.scss';
 @import 'ej2-icons/styles/tailwind.scss';
 
-
 html {
     height: 100vh;
     width: 100%;
@@ -39,4 +39,5 @@ body {
     right: 0;
     left: 0;
     margin: 0;
+    background-color: $colour-dutch-white;
 }
