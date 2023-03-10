@@ -11,20 +11,24 @@
 // @import 'ej2-buttons/styles/highcontrast.scss';
 
 @import 'colours';
-@import 'ej2-inputs/styles/tailwind-dark.scss';
 @import 'ej2-base/styles/tailwind-dark.scss';
-@import 'ej2-angular-base/styles/tailwind-dark.scss';
 @import 'ej2-buttons/styles/tailwind-dark.scss';
-@import 'ej2-angular-buttons/styles/tailwind-dark.scss';
-@import 'ej2-popups/styles/tailwind-dark.scss';
-@import 'ej2-navigations/styles/tailwind-dark.scss';
-@import 'ej2-angular-navigations/styles/tailwind-dark.scss';
-@import 'ej2-layouts/styles/tailwind-dark.scss';
-@import 'ej2-angular-dropdowns/styles/tailwind-dark.scss';
+@import 'ej2-calendars/styles/tailwind-dark.scss';
 @import 'ej2-dropdowns/styles/tailwind-dark.scss';
-@import 'ej2-lists/styles/tailwind-dark.scss';
-@import 'ej2-splitbuttons/styles/tailwind-dark.scss';
 @import 'ej2-icons/styles/tailwind.scss';
+@import 'ej2-inputs/styles/tailwind-dark.scss';
+@import 'ej2-layouts/styles/tailwind-dark.scss';
+@import 'ej2-lists/styles/tailwind-dark.scss';
+@import 'ej2-navigations/styles/tailwind-dark.scss';
+@import 'ej2-notifications/styles/tailwind-dark.scss';
+@import 'ej2-popups/styles/tailwind-dark.scss';
+@import 'ej2-splitbuttons/styles/tailwind-dark.scss';
+
+@import 'ej2-angular-base/styles/tailwind-dark.scss';
+@import 'ej2-angular-buttons/styles/tailwind-dark.scss';
+@import 'ej2-angular-dropdowns/styles/tailwind-dark.scss';
+@import 'ej2-angular-grids/styles/tailwind-dark.scss';
+@import 'ej2-angular-navigations/styles/tailwind-dark.scss';
 
 html {
     height: 100vh;

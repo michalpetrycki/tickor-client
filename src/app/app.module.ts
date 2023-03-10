@@ -16,6 +16,7 @@ import { TabMenuComponent } from './Components/tab-menu/tab-menu.component';
 import { ProjectsComponent } from './Components/tabs/projects/projects.component';
 import { MembersComponent } from './Components/tabs/members/members.component';
 import { IssuesComponent } from './Components/tabs/issues/issues.component';
+import { DataGridComponent } from './Components/data-grid/data-grid.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { IssuesComponent } from './Components/tabs/issues/issues.component';
     TabMenuComponent,
     ProjectsComponent,
     MembersComponent,
-    IssuesComponent
+    IssuesComponent,
+    DataGridComponent
   ],
   imports: [
     AppRoutingModule,

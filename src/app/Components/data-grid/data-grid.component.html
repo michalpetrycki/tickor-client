@@ -1,0 +1,17 @@
+<ejs-grid
+    [dataSource]="items"
+    [pageSettings]="pageSettings"
+    [allowPaging]="allowPaging"
+    [allowSelection]="allowSelection"
+    [allowSorting]="allowSorting">
+
+    <e-columns>
+        <e-column *ngFor="let column of displayedColumns"
+            field="{{column.field}}"
+            headerText="{{column.headerText}}"
+            width="90px">
+
+        </e-column>
+    </e-columns>
+
+</ejs-grid>
