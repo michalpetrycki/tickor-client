@@ -43,7 +43,7 @@ export class TopMenuComponent implements OnInit {
   }
 
   onFiltering(e: FilteringEventArgs): void {
-    this.clients = this.clients.filter((client: ClientResponse) => client.name.toLowerCase().startsWith(e.text));
+    this.filteredClients = this.clients.filter((client: ClientResponse) => client.name.toLowerCase().startsWith(e.text));
   }
 
   selectionChange(event: SelectEventArgs) {

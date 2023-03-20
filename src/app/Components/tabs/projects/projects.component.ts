@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
+import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ClientService } from 'src/app/Services/client/client.service';
+import { ProjectService } from 'src/app/Services/project/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -9,27 +13,24 @@ import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 export class ProjectsComponent implements OnInit {
 
   displayedColumns: { field: string, headerText: string }[] = [];
-  currentProjects!: {}[];
+  currentProjects!: ProjectResponse[];
   pageSettings: PageSettingsModel = {
     pageSize: 6
   };
   allowPaging = true;
   allowSelection = true;
   allowSorting = true;
+  selectedClient: ClientResponse | undefined;
 
-  constructor() { }
+  constructor(private projectService: ProjectService) {
+    this.selectedClient = ClientService.selectedClient;
+  }
 
   ngOnInit(): void {
-    this.currentProjects = [
-      { title: 'Title1', category: 'Category1', startDate: 'Start Date' },
-      { title: 'Title1', category: 'Category1', startDate: 'Start Date' },
-      { title: 'Title1', category: 'Category1', startDate: 'Start Date' }
-    ];
-    this.displayedColumns = [
-      { field: 'title', headerText: 'Title' },
-      { field: 'category', headerText: 'Category' },
-      { field: 'startDate', headerText: 'Start Date' },
-    ];
+    // this.projectService.list({ clientID: this.selectedClient?.id }).toPromise()
+    //   .then((projects: ProjectResponse[]) => {
+    //     this.currentProjects = projects;
+    //   });
   }
 
 }

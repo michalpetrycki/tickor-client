@@ -9,9 +9,11 @@ export class Entity {
 }
 
 export enum EntityType {
-    client = 'Client'
+    client = 'Client',
+    project = 'Project'
 }
 
 export enum EntityResourceType {
-    client = 'client'
+    client = 'client',
+    project = 'project'
 }

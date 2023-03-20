@@ -17,6 +17,8 @@ import { ProjectsComponent } from './Components/tabs/projects/projects.component
 import { MembersComponent } from './Components/tabs/members/members.component';
 import { IssuesComponent } from './Components/tabs/issues/issues.component';
 import { DataGridComponent } from './Components/data-grid/data-grid.component';
+import { ProjectBuilderComponent } from './Components/project/project-builder/project-builder.component';
+import { NgContentComponent } from './Components/ng-content/ng-content.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { DataGridComponent } from './Components/data-grid/data-grid.component';
     ProjectsComponent,
     MembersComponent,
     IssuesComponent,
-    DataGridComponent
+    DataGridComponent,
+    ProjectBuilderComponent,
+    NgContentComponent
   ],
   imports: [
     AppRoutingModule,

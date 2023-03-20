@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class UnwrappingService {
 
-  private static readonly successStatuses = [200, 'noChange'];
+  private static readonly successStatuses = [200, 201, 'noChange'];
   private static readonly apiUrl = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
