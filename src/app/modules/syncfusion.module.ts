@@ -6,6 +6,7 @@ import { TabModule, TabAllModule } from '@syncfusion/ej2-angular-navigations';
 import { GridModule } from '@syncfusion/ej2-angular-grids';
 import { DatePickerModule, DatePickerAllModule } from "@syncfusion/ej2-angular-calendars";
 import { DialogModule, TooltipModule } from '@syncfusion/ej2-angular-popups';
+import { ToastModule } from '@syncfusion/ej2-angular-notifications';
 
 @NgModule({
     exports: [
@@ -19,6 +20,7 @@ import { DialogModule, TooltipModule } from '@syncfusion/ej2-angular-popups';
         TabModule,
         TabAllModule,
         TextBoxModule,
+        ToastModule,
         TooltipModule
     ]
 })

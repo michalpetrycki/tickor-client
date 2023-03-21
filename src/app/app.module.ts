@@ -19,6 +19,7 @@ import { IssuesComponent } from './Components/tabs/issues/issues.component';
 import { DataGridComponent } from './Components/data-grid/data-grid.component';
 import { ProjectBuilderComponent } from './Components/project/project-builder/project-builder.component';
 import { NgContentComponent } from './Components/ng-content/ng-content.component';
+import { ToastPopupComponent } from './Components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgContentComponent } from './Components/ng-content/ng-content.component
     IssuesComponent,
     DataGridComponent,
     ProjectBuilderComponent,
-    NgContentComponent
+    NgContentComponent,
+    ToastPopupComponent
   ],
   imports: [
     AppRoutingModule,

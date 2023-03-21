@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
 import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ToastData } from 'src/app/Objects/interfaces/ToastData';
 import { ClientService } from 'src/app/Services/client/client.service';
 import { ProjectService } from 'src/app/Services/project/project.service';
+import { ToastService } from 'src/app/Services/toast/toast.service';
 
 @Component({
   selector: 'app-projects',
@@ -22,7 +24,7 @@ export class ProjectsComponent implements OnInit {
   allowSorting = true;
   selectedClient: ClientResponse | undefined;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private toastService: ToastService) {
     this.selectedClient = ClientService.selectedClient;
   }
 
@@ -31,6 +33,14 @@ export class ProjectsComponent implements OnInit {
     //   .then((projects: ProjectResponse[]) => {
     //     this.currentProjects = projects;
     //   });
+  }
+
+  openToast(): void {
+    const data: ToastData = {
+      message: 'Cos tam created',
+      success: true
+    };
+    this.toastService.openToast(data);
   }
 
 }
