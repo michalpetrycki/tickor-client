@@ -1,19 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { DropDownListComponent, FilteringEventArgs } from '@syncfusion/ej2-angular-dropdowns/src';
-import { GridComponent } from '@syncfusion/ej2-angular-grids';
-import { NumericTextBoxComponent } from '@syncfusion/ej2-angular-inputs';
-import { TabComponent, SelectEventArgs } from '@syncfusion/ej2-angular-navigations';
+import { FilteringEventArgs } from '@syncfusion/ej2-angular-dropdowns/src';
+import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-import { isNullOrUndefined as isNOU } from '@syncfusion/ej2-base';
 import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
-import { ProjectCreateProperties, ProjectCreateRequest } from 'src/app/Objects/API/project/ProjectCreateRequest';
-import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ProjectCreateProperties } from 'src/app/Objects/API/project/ProjectCreateRequest';
 import { ProjectControls } from 'src/app/Objects/controls/ProjectControls';
+import { ToastData } from 'src/app/Objects/interfaces/ToastData';
 import { ParamGroup } from 'src/app/Objects/params/ParamGroup';
 import { ProjectBuilderParamHelper } from 'src/app/Objects/params/project/ProjectBuilderParamHelper';
+import { BuilderService } from 'src/app/Services/builder/builder.service';
 import { ClientService } from 'src/app/Services/client/client.service';
-import { ProjectService } from 'src/app/Services/project/project.service';
+import { ToastService } from 'src/app/Services/toast/toast.service';
 
 @Component({
   selector: 'app-project-builder',
@@ -42,17 +40,18 @@ export class ProjectBuilderComponent implements OnInit {
   public filteredClients: ClientResponse[];
   public fields: Object;
 
-  constructor(private projectService: ProjectService, private clientService: ClientService) {
+  constructor(private builderService: BuilderService<ProjectCreateProperties>,
+    private clientService: ClientService,
+    private toastService: ToastService) {
+
     this.creationForm = new FormGroup({});
     this.clients = [];
     this.filteredClients = [];
     this.fields = { text: 'name', value: 'id' };
+
   }
 
   ngOnInit(): void {
-
-    this.dateMin = new Date(this.today.getTime());
-    this.dateMax = new Date(this.today.getTime() + 60 * 24 * 60 * 60 * 1000);
 
     this.clientService.list().toPromise()
       .then((clients: ClientResponse[]) => {
@@ -69,14 +68,6 @@ export class ProjectBuilderComponent implements OnInit {
 
   }
 
-  openBuilder() {
-    this.dialog.show();
-  }
-
-  dialogClose(): void {
-    alert('close');
-  }
-
   create(): void {
 
     const projectCreateProperties: ProjectCreateProperties = {
@@ -86,22 +77,20 @@ export class ProjectBuilderComponent implements OnInit {
       initialStartDate: this.creationForm.controls[ProjectControls.initialStartDate]?.value,
       initialEndDate: this.creationForm.controls[ProjectControls.initialEndDate]?.value
     };
-    this.projectService.create(projectCreateProperties).toPromise().then((newProject: ProjectResponse) => {
-      debugger;
-    })
-      .catch((error: any) => {
-        debugger;
-      });
+
+    this.builderService.emitNewEntityProperties(projectCreateProperties);
 
   }
 
-  public dlgButtons: Object[] = [{
-    click: this.dlgBtnClick.bind(this),
-    buttonModel: { content: 'OK', isPrimary: 'true' }
-  },
-  {
-    click: this.dlgBtnClick.bind(this), buttonModel: { content: 'Cancel' }
-  }];
+  public dlgButtons: Object[] = [
+    {
+      click: this.dlgBtnClick.bind(this),
+      buttonModel: { content: 'OK', isPrimary: 'true' }
+    },
+    {
+      click: this.dlgBtnClick.bind(this), buttonModel: { content: 'Cancel' }
+    }
+  ];
 
   dlgBtnClick() {
     this.dialog.hide();

@@ -20,6 +20,11 @@ import { DataGridComponent } from './Components/data-grid/data-grid.component';
 import { ProjectBuilderComponent } from './Components/project/project-builder/project-builder.component';
 import { NgContentComponent } from './Components/ng-content/ng-content.component';
 import { ToastPopupComponent } from './Components/toast/toast.component';
+import { AddEntityButtonComponent } from './Components/add-entity-button/add-entity-button.component';
+import { BuilderDialogComponent } from './Components/builder-dialog/builder-dialog.component';
+import { InputComponent } from './Components/fields/input/input.component';
+import { DateComponent } from './Components/fields/date/date.component';
+import { DropdownComponent } from './Components/fields/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { ToastPopupComponent } from './Components/toast/toast.component';
     DataGridComponent,
     ProjectBuilderComponent,
     NgContentComponent,
-    ToastPopupComponent
+    ToastPopupComponent,
+    AddEntityButtonComponent,
+    BuilderDialogComponent,
+    InputComponent,
+    DateComponent,
+    DropdownComponent
   ],
   imports: [
     AppRoutingModule,
@@ -44,6 +54,9 @@ import { ToastPopupComponent } from './Components/toast/toast.component';
     HttpClientModule,
     ReactiveFormsModule,
     SyncfusionModule
+  ],
+  entryComponents: [
+    ProjectBuilderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

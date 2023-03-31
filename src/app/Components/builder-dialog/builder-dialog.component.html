@@ -1,0 +1,10 @@
+<ejs-dialog *ngIf="showDialog" #dialog
+    [isModal]="true" 
+    [header]="'New ' + title"
+    [animationSettings]="animationSettings"
+    width="30%">
+    <ng-template #content>
+        <ng-container *ngComponentOutlet="builder" >
+        </ng-container>
+    </ng-template>
+</ejs-dialog>

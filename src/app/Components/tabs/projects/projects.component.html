@@ -4,9 +4,11 @@
     [pageSettings]="pageSettings"
     [allowPaging]="allowPaging"
     [allowSelection]=allowSelection
-    [allowSorting]="allowSorting"></app-data-grid>
+    [allowSorting]="allowSorting">
+</app-data-grid>
 
-<app-project-builder></app-project-builder>
-
-<button (click)="openToast()">Opentoast</button>
-<app-toast></app-toast>
+<app-add-entity-button
+    [builderComponent]="builderComponent"
+    [entityTypeName]="entityTypeName"
+    (newEntityPropertiesEmitter)="createNewProject($event)">
+</app-add-entity-button>
