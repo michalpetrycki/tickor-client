@@ -1,154 +1,77 @@
-<button ejs-button (click)="openBuilder()">Create project</button>
+<form [formGroup]="creationForm">
 
-<ejs-dialog #dialog [header]="header" [animationSettings]="animationSettings" [showCloseIcon]="true" 
-    (close)="dialogClose()" [visible]="false" [isModal]="true" width="30%">
-
-    <!-- <div *ngFor="let group of creationParamGroups">
-        <div>{{group.name}}</div>
-
-        <div *ngFor="let param of group.params">
-
-            <ng-container [ngSwitch]="param.type">
-                <ng-container *ngSwitchCase="'date'">
-                    <ng-container *ngTemplateOutlet="date"></ng-container>
-                </ng-container>
-                <ng-container *ngSwitchCase="'dropdown'">
-                    <ng-container *ngTemplateOutlet="dropdown"></ng-container>
-                </ng-container>
-            </ng-container>
-            <ng-template #date>
-                <ejs-datepicker #date width='100%' placeholder='Initial Start Date' floatLabelType='Auto'
-                    [min]='dateMin' [max]='dateMax' [value]='date'></ejs-datepicker>
-            </ng-template>
-            <ng-template #dropdown>
-                <input type="text" placeholder="some placeholder" >
-            </ng-template>
-
-        </div>
+    <ejs-tab #tab id="tab_wizard" heightAdjustMode="Fill" width="100%" (select)="tabSelected($event)">
         
-    </div> -->
+        <e-tabitems>
 
-    <form [formGroup]="creationForm">
+            <e-tabitem *ngFor="let group of creationParamGroups">
 
-        <ng-template #content>
+                <ng-template #headerText>
+                    {{group.name}}
+                </ng-template>
 
-            <ejs-tab #tab id="tab_wizard" heightAdjustMode="Fill" width="100%" (select)="tabSelected($event)">
-               
-                <e-tabitems>
-    
-                    <e-tabitem *ngFor="let group of creationParamGroups">
-    
-                        <ng-template #headerText>
-                            {{group.name}}
-                        </ng-template>
-    
-                        <ng-template #content>
-                            
-                            <div *ngFor="let param of group.params" class="responsive-align">
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 search-item" floatLabelType="Auto">
-                                        <ng-container [ngSwitch]="param.type">
-                                            <ng-container *ngSwitchCase="'date'">
-                                                <ng-container *ngTemplateOutlet="date"></ng-container>
-                                            </ng-container>
-                                            <ng-container *ngSwitchCase="'dropdown'">
-                                                <ng-container *ngTemplateOutlet="dropdown"></ng-container>
-                                            </ng-container>
-                                            <ng-container *ngSwitchDefault>
-                                                <ng-container *ngTemplateOutlet="input"></ng-container>
-                                            </ng-container>
-                                        </ng-container>
-                                        <ng-template #date>
-                                            <ejs-datepicker #date class="form-control" formControlName="{{param.name}}"width='100%' placeholder="{{param.label}}" floatLabelType='Auto'
-                                                [min]='dateMin' [max]='dateMax' [value]='date'></ejs-datepicker>
-                                        </ng-template>
-                                        <ng-template #dropdown>
-                                            <ejs-dropdownlist 
-                                                #clientDdl
-                                                id="clientDdl" 
-                                                name="clientDdl" 
-                                                [dataSource]="filteredClients" 
-                                                [fields]="fields" 
-                                                placeholder="Select a client" 
-                                                formControlName="{{param.name}}"
-                                                [allowFiltering]='true' 
-                                                (filtering)='onFiltering($event)'
-                                                (close)="repopulateDropdown()"></ejs-dropdownlist>
-                                        </ng-template>
-                                        <ng-template #input>
-                                            <ejs-tooltip content="{{param.tooltip}}" target="#inputTarget">
-                                                <ejs-textbox id="input-target" class="form-control" formControlName="{{param.name}}" placeholder="{{param.label}}" floatLabelType="Auto"></ejs-textbox>
-                                            </ejs-tooltip>
-                                        </ng-template>
-                                    </div>
-                                </div>
-                            </div>
-    
-                        </ng-template>
-    
-                    </e-tabitem>
-    
-    
-                    <!-- <e-tabitem [header]='headerText[0]'>
-                       <ng-template #content>
-                            <div id='project-details'>
-                                <div class="responsive-align">
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 search-item" floatLabelType="Auto">
-                                            <ng-container [ngSwitch]
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 search-item">
-                                            <ejs-datepicker #date width='100%' placeholder='Initial Start Date' floatLabelType='Auto'
-                                                [min]='dateMin' [max]='dateMax' [value]='date'></ejs-datepicker>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 search-item">
-                                            <ejs-datepicker #date width='100%' placeholder='Initial End Date' floatLabelType='Auto'
-                                                [min]='dateMin' [max]='dateMax' [value]='date'></ejs-datepicker>
-                                        </div>
-                                    </div>
-                                   
-                                    <span id="err1"></span>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </e-tabitem>
-                    <e-tabitem [header]='headerText[1]' disabled=true>
-            
-                        <ng-template #content>
-                            <div id='client-details'>
-                                <input type="text" placeholder="some content" > -->
-                                <!-- <ejs-grid #availableTrain width="100%" (created)="availableTrainGridcreated($event)" (rowSelected)='trainSelected($event)'>
-                                    <e-columns>
-                                        <e-column field='TrainNo' headerText='Train No' width=120 type='number'></e-column>
-                                        <e-column field='Name' headerText='Name' width=140></e-column>
-                                        <e-column field='Departure' headerText='Departure' width=120></e-column>
-                                        <e-column field='Arrival' headerText='Arrival' width=140></e-column>
-                                        <e-column field='Availability' headerText='Availability' width=140 type='number'></e-column>
-                                    </e-columns>
-                                </ejs-grid> -->
-                                <!-- <br />
-                                
-                                <span id="err2"></span>
-                            </div>
-                        </ng-template>
-                    </e-tabitem> -->
+                <ng-template #content>
                     
-                </e-tabitems>
-                
-            </ejs-tab>
-    
-            <div class="btn-container">
-                <button id="prevBtn" class="e-btn" (click)="showPreviousTab()" [disabled]="disablePrevBtn()">Previous</button>
-                <button id='nextBtn' class='e-btn' (click)="showNextTab()" [disabled]="disableNextBtn()">Next</button>
-                <button id='createBtn' class='e-btn' (click)="create()" [disabled]="disableCreateBtn()">Create Project</button>
-            </div>
-    
-        </ng-template>
+                    <div *ngFor="let param of group.params" class="responsive-align">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 search-item" floatLabelType="Auto">
+                                <ng-container [ngSwitch]="param.type">
+                                    <ng-container *ngSwitchCase="'date'">
+                                        <ng-container *ngTemplateOutlet="date"></ng-container>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'dropdown'">
+                                        <ng-container *ngTemplateOutlet="dropdown"></ng-container>
+                                    </ng-container>
+                                    <ng-container *ngSwitchDefault>
+                                        <ng-container *ngTemplateOutlet="input"></ng-container>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-template #date>
+                                    <app-date
+                                    <ejs-datepicker #date class="form-control" 
+                                        formControlName="{{param.name}}"
+                                        width='100%' 
+                                        placeholder="{{param.label}}" 
+                                        floatLabelType='Auto'
+                                        [value]='date'>
+                                    </ejs-datepicker>
+                                </ng-template>
+                                <ng-template #dropdown>
+                                    <ejs-dropdownlist 
+                                        #clientDdl
+                                        id="clientDdl" 
+                                        name="clientDdl" 
+                                        [dataSource]="filteredClients" 
+                                        [fields]="fields" 
+                                        placeholder="Select a client" 
+                                        formControlName="{{param.name}}"
+                                        [allowFiltering]='true' 
+                                        (filtering)='onFiltering($event)'
+                                        (close)="repopulateDropdown()"></ejs-dropdownlist>
+                                </ng-template>
+                                <ng-template #input>
+                                    <ejs-tooltip content="{{param.tooltip}}" target="#inputTarget">
+                                        <ejs-textbox id="input-target" class="form-control" formControlName="{{param.name}}" placeholder="{{param.label}}" floatLabelType="Auto"></ejs-textbox>
+                                    </ejs-tooltip>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
 
-    </form>
+                </ng-template>
 
-</ejs-dialog>
+            </e-tabitem>
+            
+        </e-tabitems>
+        
+    </ejs-tab>
+
+    <div class="btn-container">
+        <button id="prevBtn" class="e-btn" (click)="showPreviousTab()" [disabled]="disablePrevBtn()">Previous</button>
+        <button id='nextBtn' class='e-btn' (click)="showNextTab()" [disabled]="disableNextBtn()">Next</button>
+        <button id='createBtn' class='e-btn' (click)="create()" [disabled]="disableCreateBtn()">Create Project</button>
+    </div>
+
+</form>
+
+<app-toast></app-toast>
