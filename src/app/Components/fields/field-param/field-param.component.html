@@ -1,0 +1,29 @@
+<ng-container [ngSwitch]="param.type">
+    <ng-container *ngSwitchCase="'date'">
+        <ng-container *ngTemplateOutlet="date"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'dropdown'">
+        <ng-container *ngTemplateOutlet="dropdown"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+        <ng-container *ngTemplateOutlet="input"></ng-container>
+    </ng-container>
+</ng-container>
+<ng-template #date>
+    <app-field-datepicker
+        [formGroup]="formGroup"
+        [param]="param">
+    </app-field-datepicker>
+</ng-template>
+<ng-template #dropdown>
+    <app-field-dropdown
+        [formGroup]="formGroup"
+        [param]="param">
+    </app-field-dropdown>
+</ng-template>
+<ng-template #input>
+    <app-field-input
+        [formGroup]="formGroup"
+        [param]="param">
+    </app-field-input>
+</ng-template>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToastPopupComponent } from './toast.component';
+import { FieldDropdownComponent } from './field-dropdown.component';
 
-describe('ToastComponent', () => {
-  let component: ToastPopupComponent;
-  let fixture: ComponentFixture<ToastPopupComponent>;
+describe('FieldDropdownComponent', () => {
+  let component: FieldDropdownComponent;
+  let fixture: ComponentFixture<FieldDropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToastPopupComponent ]
+      declarations: [ FieldDropdownComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToastPopupComponent);
+    fixture = TestBed.createComponent(FieldDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

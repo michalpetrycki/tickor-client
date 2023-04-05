@@ -1,0 +1,14 @@
+<div class="form-control" [formGroup]="formGroup">
+    <ejs-dropdownlist 
+        #clientDdl
+        id="clientDdl" 
+        name="clientDdl" 
+        [dataSource]="filteredItems" 
+        [fields]="fields" 
+        placeholder="{{param.name}}" 
+        formControlName="{{param.name}}"
+        [allowFiltering]='true' 
+        (filtering)='onFiltering($event)'
+        (close)="repopulateDropdown()">
+    </ejs-dropdownlist>
+</div>

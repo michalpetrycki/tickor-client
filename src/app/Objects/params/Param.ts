@@ -5,8 +5,8 @@ export interface Param {
     name: string;
     required: boolean;
     type: ParamType;
-    values?: DropdownOption;
+    values?: DropdownOption[];
     readOnly?: boolean;
-    label: string;
     tooltip: string;
+    fields?: Object;
 }

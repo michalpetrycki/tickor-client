@@ -2,60 +2,38 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TabComponent } from '@syncfusion/ej2-angular-navigations';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
-import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
+import { MemberCreateProperties } from 'src/app/Objects/API/member/MemberCreateRequest';
 import { ProjectCreateProperties } from 'src/app/Objects/API/project/ProjectCreateRequest';
 import { ProjectControls } from 'src/app/Objects/controls/ProjectControls';
 import { ParamGroup } from 'src/app/Objects/params/ParamGroup';
-import { ProjectBuilderParamHelper } from 'src/app/Objects/params/project/ProjectBuilderParamHelper';
+import { MemberBuilderParamHelper } from 'src/app/Objects/params/member/MemberBuilderParamHelper';
 import { BuilderService } from 'src/app/Services/builder/builder.service';
-import { ClientService } from 'src/app/Services/client/client.service';
+import { MemberControls } from 'src/app/Objects/controls/MemberControls';
 
 @Component({
-  selector: 'app-project-builder',
-  templateUrl: './project-builder.component.html',
-  styleUrls: ['./project-builder.component.scss']
+  selector: 'app-member-builder',
+  templateUrl: './member-builder.component.html',
+  styleUrls: ['./member-builder.component.scss']
 })
-export class ProjectBuilderComponent implements OnInit {
+export class MemberBuilderComponent implements OnInit {
 
   @ViewChild('tab') tab!: TabComponent;
   @ViewChild('dialog') dialog!: DialogComponent;
 
-  public today: Date = new Date();
-  public dateMin!: Date;
-  public dateMax!: Date;
   public headerText: Object[] = [];
-
   public animationSettings: Object = { effect: 'None' };
-  public header = 'New project';
-
-  private selectedTabIndex = 0;
-
+  public header = 'New member';
   public creationParamGroups!: ParamGroup[];
   public creationForm!: FormGroup;
+  private selectedTabIndex = 0;
 
-  public clients: ClientResponse[];
-  public filteredClients: ClientResponse[];
-  public fields: Object;
-
-  constructor(private builderService: BuilderService<ProjectCreateProperties>,
-    private clientService: ClientService) {
-
+  constructor(private builderService: BuilderService<MemberCreateProperties>) {
     this.creationForm = new FormGroup({});
-    this.clients = [];
-    this.filteredClients = [];
-    this.fields = { text: 'name', value: 'id' };
-
   }
 
   ngOnInit(): void {
 
-    this.clientService.list().toPromise()
-      .then((clients: ClientResponse[]) => {
-        this.clients = clients;
-        this.filteredClients = clients;
-      });
-
-    this.creationParamGroups = ProjectBuilderParamHelper.createParamGroups();
+    this.creationParamGroups = MemberBuilderParamHelper.createParamGroups();
     for (let group of this.creationParamGroups) {
       for (let param of group.params) {
         this.creationForm.addControl(param.name, new FormControl());
@@ -66,15 +44,13 @@ export class ProjectBuilderComponent implements OnInit {
 
   create(): void {
 
-    const projectCreateProperties: ProjectCreateProperties = {
-      name: this.creationForm.controls[ProjectControls.name]?.value,
-      active: true,
-      clientID: 1,
-      initialStartDate: this.creationForm.controls[ProjectControls.initialStartDate]?.value,
-      initialEndDate: this.creationForm.controls[ProjectControls.initialEndDate]?.value
+    const memberCreateProperties: MemberCreateProperties = {
+      username: this.creationForm.controls[MemberControls.username]?.value,
+      email: this.creationForm.controls[MemberControls.email]?.value,
+      kind: this.creationForm.controls[MemberControls.kind]?.value
     };
 
-    this.builderService.emitNewEntityProperties(projectCreateProperties);
+    this.builderService.emitNewEntityProperties(memberCreateProperties);
 
   }
 

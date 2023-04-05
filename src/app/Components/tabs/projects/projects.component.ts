@@ -4,11 +4,9 @@ import { ProjectBuilderComponent } from 'src/app/Components/project/project-buil
 import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
 import { ProjectCreateProperties } from 'src/app/Objects/API/project/ProjectCreateRequest';
 import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
-import { ToastData } from 'src/app/Objects/interfaces/ToastData';
 import { BuilderService } from 'src/app/Services/builder/builder.service';
 import { ClientService } from 'src/app/Services/client/client.service';
 import { ProjectService } from 'src/app/Services/project/project.service';
-import { ToastService } from 'src/app/Services/toast/toast.service';
 
 @Component({
   selector: 'app-projects',
@@ -31,7 +29,6 @@ export class ProjectsComponent implements OnInit {
   builderComponent = ProjectBuilderComponent;
 
   constructor(private projectService: ProjectService,
-    private toastService: ToastService,
     private builderService: BuilderService<ProjectCreateProperties>) {
     this.selectedClient = ClientService.selectedClient;
   }
@@ -40,24 +37,13 @@ export class ProjectsComponent implements OnInit {
     this.changePagination();
   }
 
-  openToast(success: boolean, error?: string): void {
-
-    const message = success ? 'New project successfully created' : `Failure during creation of new project. Reason: ${error}`;
-    const data: ToastData = {
-      message,
-      success
-    };
-    this.toastService.openToast(data);
-
-  }
-
   createNewProject(newProjectProperties: ProjectCreateProperties): void {
     this.projectService.create(newProjectProperties).toPromise()
       .then((newProject: ProjectResponse) => {
-        this.openToast(true);
+        alert('OK');
       })
       .catch((error: any) => {
-        this.openToast(false, error);
+        alert('Error');
       })
       .finally(() => {
         this.builderService.closeDialog();
