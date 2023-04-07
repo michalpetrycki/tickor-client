@@ -26,6 +26,8 @@ import { FieldDropdownComponent } from './Components/fields/field-dropdown/field
 import { FieldDatepickerComponent } from './Components/fields/field-datepicker/field-datepicker.component';
 import { FieldParamComponent } from './Components/fields/field-param/field-param.component';
 import { MemberBuilderComponent } from './Components/member/member-builder/member-builder.component';
+import { ProjectDetailComponent } from './projects/feature/project-detail/project-detail.component';
+import { ProjectListPage } from './projects/feature/project-list/project-list.page';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { MemberBuilderComponent } from './Components/member/member-builder/membe
     FieldDropdownComponent,
     FieldDatepickerComponent,
     FieldParamComponent,
-    MemberBuilderComponent
+    MemberBuilderComponent,
+    ProjectDetailComponent,
+    ProjectListPage
   ],
   imports: [
     AppRoutingModule,

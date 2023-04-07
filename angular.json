@@ -143,5 +143,11 @@
       }
     }
   },
-  "defaultProject": "tickor-client"
+  "defaultProject": "tickor-client",
+  "cli": {
+    "schematicCollections": [
+      "@ngrx/schematics",
+      "@ngrx/schematics"
+    ]
+  }
 }
