@@ -1,20 +1,20 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { MemberListPageRoutingModule } from "src/app/members/feature/member-list/member-list-routing.module";
+import { MemberListPage } from "src/app/members/feature/member-list/member-list.page";
 import { SharedModule } from "src/app/modules/shared.module";
-import { ProjectListPageRoutingModule } from "src/app/projects/feature/project-list/project-list-routing.module";
-import { ProjectListPage } from "src/app/projects/feature/project-list/project-list.page";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        ProjectListPageRoutingModule,
+        MemberListPageRoutingModule,
         SharedModule
     ],
     declarations: [
-        ProjectListPage
+        MemberListPage
     ]
 })
 
-export class ProjectListPageModule { }
+export class MemberListPageModule { }

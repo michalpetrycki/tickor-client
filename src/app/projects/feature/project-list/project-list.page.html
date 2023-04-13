@@ -1,1 +1,14 @@
-<p>project-list works!</p>
+<app-data-grid 
+    [displayedColumns]="displayedColumns" 
+    [items]="currentProjects"
+    [pageSettings]="pageSettings"
+    [allowPaging]="allowPaging"
+    [allowSelection]="allowSelection"
+    [allowSorting]="allowSorting">
+</app-data-grid>
+
+<app-add-entity-button
+    [builderComponent]="builderComponent"
+    [entityTypeName]="entityTypeName"
+    (newEntityPropertiesEmitter)="createNewProject($event)">
+</app-add-entity-button>

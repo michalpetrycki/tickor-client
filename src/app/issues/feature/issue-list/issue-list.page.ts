@@ -9,14 +9,15 @@ import { ClientService } from 'src/app/Services/client/client.service';
 import { ProjectService } from 'src/app/Services/project/project.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  selector: 'app-issue-list',
+  templateUrl: './issue-list.page.html',
+  styleUrls: ['./issue-list.page.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class IssueListPage implements OnInit {
 
   displayedColumns: { field: string, headerText: string }[] = [];
-  currentProjects!: ProjectResponse[];
+  // currentIssues!: IssueResponse[];
+  currentIssues!: any[];
   pageSettings: PageSettingsModel = {
     pageSize: 6
   };
@@ -25,7 +26,7 @@ export class ProjectsComponent implements OnInit {
   allowSorting = true;
   selectedClient: ClientResponse | undefined;
 
-  entityTypeName = 'Project';
+  entityTypeName = 'Issue';
   builderComponent = ProjectBuilderComponent;
 
   constructor(private projectService: ProjectService,
@@ -37,7 +38,7 @@ export class ProjectsComponent implements OnInit {
     this.changePagination();
   }
 
-  createNewProject(newProjectProperties: ProjectCreateProperties): void {
+  createNewIssue(newProjectProperties: ProjectCreateProperties): void {
     this.projectService.create(newProjectProperties).toPromise()
       .then((newProject: ProjectResponse) => {
         alert('OK');
@@ -53,8 +54,8 @@ export class ProjectsComponent implements OnInit {
 
   changePagination(): void {
     this.projectService.list({ clientID: this.selectedClient?.id }).toPromise()
-      .then((projects: ProjectResponse[]) => {
-        this.currentProjects = projects;
+      .then((issues: ProjectResponse[]) => {
+        this.currentIssues = issues;
       });
   }
 

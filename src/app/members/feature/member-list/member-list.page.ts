@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { MemberBuilderComponent } from 'src/app/Components/member/member-builder/member-builder.component';
+import { MemberCreateProperties } from 'src/app/Objects/API/member/MemberCreateRequest';
 import { MemberResponse } from 'src/app/Objects/API/member/MemberResponse';
 import { BuilderService } from 'src/app/Services/builder/builder.service';
 import { MemberService } from 'src/app/Services/member/member.service';
-import { MemberCreateProperties } from 'src/app/Objects/API/member/MemberCreateRequest';
-import { MemberBuilderComponent } from 'src/app/Components/member/member-builder/member-builder.component';
 
 @Component({
-  selector: 'app-members',
-  templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss']
+  selector: 'app-member-list',
+  templateUrl: './member-list.page.html',
+  styleUrls: ['./member-list.page.scss']
 })
-export class MembersComponent implements OnInit {
+export class MemberListPage implements OnInit {
 
   displayedColumns: { field: string, headerText: string }[] = [];
   currentMembers!: MemberResponse[];
@@ -55,5 +55,5 @@ export class MembersComponent implements OnInit {
         this.currentMembers = members;
       });
   }
-
+  
 }

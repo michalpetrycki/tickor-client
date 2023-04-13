@@ -1,6 +1,6 @@
 <app-data-grid 
     [displayedColumns]="displayedColumns" 
-    [items]="currentProjects"
+    [items]="currentIssues"
     [pageSettings]="pageSettings"
     [allowPaging]="allowPaging"
     [allowSelection]=allowSelection
@@ -10,5 +10,5 @@
 <app-add-entity-button
     [builderComponent]="builderComponent"
     [entityTypeName]="entityTypeName"
-    (newEntityPropertiesEmitter)="createNewProject($event)">
+    (newEntityPropertiesEmitter)="createNewIssue($event)">
 </app-add-entity-button>

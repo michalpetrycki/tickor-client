@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { SelectEventArgs } from '@syncfusion/ej2-lists';
 
 @Component({
   selector: 'app-data-grid',
@@ -18,5 +19,9 @@ export class DataGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+
+  public rowSelected(event: SelectEventArgs) {
+    alert(event);
+  }
 
 }

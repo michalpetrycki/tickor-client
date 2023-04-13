@@ -1,17 +1,34 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { IssuesComponent } from 'src/app/Components/tabs/issues/issues.component';
-import { MembersComponent } from 'src/app/Components/tabs/members/members.component';
-import { ProjectsComponent } from 'src/app/Components/tabs/projects/projects.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'members', component: MembersComponent },
-  { path: 'issues', component: IssuesComponent }
+  {
+    path: 'projects',
+    loadChildren: () =>
+      import('./projects/feature/project-shell/project-shell.module').then(
+        (m) => m.ProjectShellModule
+      )
+  },
+  {
+    path: 'members',
+    loadChildren: () =>
+      import('./members/feature/member-shell/member-shell.module').then(
+        (m) => m.MemberShellModule
+      )
+  },
+  {
+    path: 'issues',
+    loadChildren: () =>
+      import('./issues/feature/issue-shell/issue-shell.module').then(
+        (m) => m.IssueShellModule
+      )
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

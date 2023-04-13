@@ -1,20 +1,20 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { IssueListPageRoutingModule } from "src/app/issues/feature/issue-list/issue-list-routing.module";
+import { IssueListPage } from "src/app/issues/feature/issue-list/issue-list.page";
 import { SharedModule } from "src/app/modules/shared.module";
-import { ProjectListPageRoutingModule } from "src/app/projects/feature/project-list/project-list-routing.module";
-import { ProjectListPage } from "src/app/projects/feature/project-list/project-list.page";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        ProjectListPageRoutingModule,
+        IssueListPageRoutingModule,
         SharedModule
     ],
     declarations: [
-        ProjectListPage
+        IssueListPage
     ]
 })
 
-export class ProjectListPageModule { }
+export class IssueListPageModule { }

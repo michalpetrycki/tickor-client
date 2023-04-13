@@ -3,7 +3,8 @@
     [pageSettings]="pageSettings"
     [allowPaging]="allowPaging"
     [allowSelection]="allowSelection"
-    [allowSorting]="allowSorting">
+    [allowSorting]="allowSorting"
+    (rowSelected)="rowSelected($event)">
 
     <e-columns>
         <e-column *ngFor="let column of displayedColumns"
