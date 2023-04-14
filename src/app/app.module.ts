@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 // Syncfusion components
 import { SyncfusionModule } from 'src/app/modules/syncfusion.module';
 import { HeaderComponent } from './Components/header/header.component';
-import { ContentComponent } from './Components/content/content.component';
 import { TopMenuComponent } from './Components/top-menu/top-menu.component';
 import { QuickSearchComponent } from './Components/quick-search/quick-search.component';
 import { TabMenuComponent } from './Components/tab-menu/tab-menu.component';
@@ -24,7 +23,6 @@ import { MemberBuilderComponent } from './Components/member/member-builder/membe
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent,
     TopMenuComponent,
     QuickSearchComponent,
     TabMenuComponent,
