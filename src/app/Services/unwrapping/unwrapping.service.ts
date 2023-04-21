@@ -17,17 +17,16 @@ export class UnwrappingService {
 
     constructor(private httpClient: HttpClient) { }
 
-    list<T>(endpoint: string, headers: { [key: string]: string }): Observable<T[] | Error> {
+    list<T>(endpoint: string, headers: { [key: string]: string }): Observable<T[]> {
         return this.httpClient.get<T[]>(UnwrappingService.apiUrl + endpoint, headers)
             .pipe(
                 retry(3),
                 tap((res: T[]) => console.log(res)),
                 map((res: T[]) => res),
-                catchError(this.handleError)
             );
     }
 
-    get<T>(endpoint: string, headers: { [key: string]: string }): Observable<PaginatedResponse<T> | Error> {
+    get<T>(endpoint: string, headers: { [key: string]: string }): Observable<PaginatedResponse<T>> {
         return this.httpClient.get<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, headers)
             .pipe(
                 retry(3),
@@ -38,39 +37,35 @@ export class UnwrappingService {
                         values: []
                     };
                 }),
-                catchError(this.handleError)
             );
     }
 
-    post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T | Error> {
+    post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
         return this.httpClient.post<T>(UnwrappingService.apiUrl + endpoint, body, headers)
             .pipe(
                 retry(3),
                 tap(res => console.log(res)),
-                map((res: T) => res),
-                catchError(this.handleError)
+                map((res: T) => res)
             );
     }
 
-    put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T | Error> {
+    put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
         return this.httpClient.put<T>(UnwrappingService.apiUrl + endpoint, body, headers)
             .pipe(
                 retry(3),
                 tap(res => console.log(res)),
-                map((res: T) => res),
-                catchError(this.handleError)
+                map((res: T) => res)
             );
     }
 
-    delete(endpoint: string, id: number, headers: { [key: string]: string }): Observable<Object | Error> {
+    delete(endpoint: string, id: number, headers: { [key: string]: string }): Observable<Object> {
         return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, headers)
             .pipe(
                 retry(3),
                 tap(res => { console.log(res); }),
                 map((res: Object) => {
                     return res;
-                }),
-                catchError(this.handleError)
+                })
             );
     }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { catchError, map } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
 import { MemberBuilderComponent } from 'src/app/Components/member/member-builder/member-builder.component';
 import { PaginatedRequest } from 'src/app/Objects/API/PaginatedRequest';
 import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
@@ -38,25 +40,33 @@ export class MemberListPage implements OnInit {
     }
 
     createNewMember(newMemberProperties: MemberCreateProperties): void {
-        this.memeberService.create(newMemberProperties).toPromise()
-            .catch((error: Error) => { })
-            .then((newMember: MemberResponse) => {
-                alert('OK');
-            })
-            .catch((error: any) => {
-                alert('Error');
-            })
-            .finally(() => {
-                this.builderService.closeDialog();
-                this.changePagination();
-            });
+        // this.memeberService.create(newMemberProperties)
+        //     .pipe()
+
+        // this.memeberService.create(newMemberProperties).toPromise()
+        //     .catch((error: Error) => { })
+        //     .then((newMember: MemberResponse) => {
+        //         alert('OK');
+        //     })
+        //     .catch((error: any) => {
+        //         alert('Error');
+        //     })
+        //     .finally(() => {
+        //         this.builderService.closeDialog();
+        //         this.changePagination();
+        //     });
     }
 
     changePagination(): void {
-        this.memeberService.list().toPromise()
-            .then((members: PaginatedResponse<MemberResponse> | Error) => {
-                this.currentMembers = members;
-            });
+        this.memeberService.list()
+            .pipe(
+                map((res: MemberResponse[]) => {
+                    this.currentMembers = res;
+                }),
+                catchError((err, caught) => {
+                    return EMPTY;
+                })
+            )
     }
 
 }

@@ -15,23 +15,23 @@ export class MemberService {
 
     constructor(private apiService: RequestApiService<MemberResponse>) { }
 
-    public list(filters?: MemberListFilter): Observable<PaginatedResponse<MemberResponse> | Error> {
+    public list(filters?: MemberListFilter): Observable<MemberResponse[]> {
         const listRequest = new MemberListRequest(filters);
-        return this.apiService.getPaginated(listRequest);
+        return this.apiService.list(listRequest);
     }
 
-    public listPaginated(paginate: Pagination, filters?: MemberListFilter): Observable<MemberResponse[] | Error> {
+    public listPaginated(paginate: Pagination, filters?: MemberListFilter): Observable<MemberResponse[]> {
         const listRequest = new MemberListRequest(filters);
         listRequest.paginate = paginate;
         return this.apiService.list(listRequest);
     }
 
-    public create(properties: MemberCreateProperties): Observable<MemberResponse | Error> {
+    public create(properties: MemberCreateProperties): Observable<MemberResponse> {
         const createProperties = new MemberCreateRequest(properties);
         return this.apiService.post(createProperties);
     }
 
-    public edit(properties: MemberEditProperties): Observable<MemberResponse | Error> {
+    public edit(properties: MemberEditProperties): Observable<MemberResponse> {
         const editProperties = new MemberEditRequest(properties);
         return this.apiService.put(editProperties);
     }

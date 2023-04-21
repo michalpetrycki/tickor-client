@@ -18,32 +18,32 @@ export class RequestApiService<ResponseType> {
 
   constructor(protected http: UnwrappingService, protected authService: AuthenticationService) { }
 
-  public list(requestBody: EndpointRequest): Observable<ResponseType[] | Error> {
+  public list(requestBody: EndpointRequest): Observable<ResponseType[]> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.list<ResponseType>(requestBody.getEndpoint(), headers);
   }
 
-  public getPaginated(requestBody: EndpointRequest): Observable<PaginatedResponse<ResponseType> | Error> {
+  public getPaginated(requestBody: EndpointRequest): Observable<PaginatedResponse<ResponseType>> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.get<ResponseType>(requestBody.getEndpoint(), headers);
   }
 
-  public getSingle(requestBody: EndpointRequest, request: any): Observable<PaginatedResponse<ResponseType> | Error> {
+  public getSingle(requestBody: EndpointRequest, request: any): Observable<PaginatedResponse<ResponseType>> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.get<ResponseType>(requestBody.getEndpoint(), headers);
   }
 
-  public post(requestBody: EndpointRequest): Observable<ResponseType | Error> {
+  public post(requestBody: EndpointRequest): Observable<ResponseType> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.post<ResponseType>(requestBody.getEndpoint(), requestBody, headers);
   }
 
-  public put(requestBody: EndpointRequest): Observable<ResponseType | Error> {
+  public put(requestBody: EndpointRequest): Observable<ResponseType> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.put<ResponseType>(requestBody.getEndpoint(), requestBody, headers);
   }
 
-  public delete(requestBody: EndpointRequest, id: number): Observable<Object | Error> {
+  public delete(requestBody: EndpointRequest, id: number): Observable<Object> {
     const headers = { 'Authorization': this.authService.token };
     return this.http.delete(requestBody.getEndpoint(), id, headers);
   }

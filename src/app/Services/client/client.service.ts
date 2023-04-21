@@ -25,9 +25,9 @@ export class ClientService {
 
     constructor(private apiService: RequestApiService<ClientResponse>) { }
 
-    public list(filters?: ClientListFilter): Observable<PaginatedResponse<ClientResponse> | Error> {
+    public list(filters?: ClientListFilter): Observable<ClientResponse[]> {
         const clientListRequest = new ClientListRequest(filters);
-        return this.apiService.getPaginated(clientListRequest);
+        return this.apiService.list(clientListRequest);
     }
 
     public listPaginated(paginate: Pagination, filters?: ClientListFilter): Observable<ClientResponse[] | Error> {
