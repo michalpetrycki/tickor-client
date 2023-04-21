@@ -1,59 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { MemberBuilderComponent } from 'src/app/Components/member/member-builder/member-builder.component';
+import { PaginatedRequest } from 'src/app/Objects/API/PaginatedRequest';
+import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
 import { MemberCreateProperties } from 'src/app/Objects/API/member/MemberCreateRequest';
 import { MemberResponse } from 'src/app/Objects/API/member/MemberResponse';
 import { BuilderService } from 'src/app/Services/builder/builder.service';
 import { MemberService } from 'src/app/Services/member/member.service';
 
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.page.html',
-  styleUrls: ['./member-list.page.scss']
+    selector: 'app-member-list',
+    templateUrl: './member-list.page.html',
+    styleUrls: ['./member-list.page.scss']
 })
 export class MemberListPage implements OnInit {
 
-  displayedColumns: { field: string, headerText: string }[] = [];
-  currentMembers!: MemberResponse[];
-  pageSettings: PageSettingsModel = {
-    pageSize: 6
-  };
-  allowPaging = true;
-  allowSelection = true;
-  allowSorting = true;
-  selectedClient: MemberResponse | undefined;
+    displayedColumns: { field: string, headerText: string }[] = [];
+    currentMembers!: MemberResponse[];
+    pageSettings: PageSettingsModel = {
+        pageSize: 6
+    };
+    allowPaging = true;
+    allowSelection = true;
+    allowSorting = true;
+    selectedClient: MemberResponse | undefined;
 
-  entityTypeName = 'Member';
-  builderComponent = MemberBuilderComponent;
+    entityTypeName = 'Member';
+    builderComponent = MemberBuilderComponent;
 
-  constructor(private memeberService: MemberService,
-    private builderService: BuilderService<MemberCreateProperties>) {
-    // this.selectedClient = ClientService.selectedClient;
-  }
+    constructor(private memeberService: MemberService,
+        private builderService: BuilderService<MemberCreateProperties>) {
+        // this.selectedClient = ClientService.selectedClient;
+    }
 
-  ngOnInit(): void {
-    this.changePagination();
-  }
+    ngOnInit(): void {
+        this.changePagination();
+    }
 
-  createNewMember(newMemberProperties: MemberCreateProperties): void {
-      this.memeberService.create(newMemberProperties).toPromise()
-        .then((newMember: MemberResponse) => {
-          alert('OK');
-        })
-        .catch((error: any) => {
-          alert('Error');
-        })
-        .finally(() => {
-          this.builderService.closeDialog();
-          this.changePagination();
-        });
-  }
+    createNewMember(newMemberProperties: MemberCreateProperties): void {
+        this.memeberService.create(newMemberProperties).toPromise()
+            .catch((error: Error) => { })
+            .then((newMember: MemberResponse) => {
+                alert('OK');
+            })
+            .catch((error: any) => {
+                alert('Error');
+            })
+            .finally(() => {
+                this.builderService.closeDialog();
+                this.changePagination();
+            });
+    }
 
-  changePagination(): void {
-    this.memeberService.list().toPromise()
-      .then((members: MemberResponse[]) => {
-        this.currentMembers = members;
-      });
-  }
-  
+    changePagination(): void {
+        this.memeberService.list().toPromise()
+            .then((members: PaginatedResponse<MemberResponse> | Error) => {
+                this.currentMembers = members;
+            });
+    }
+
 }
