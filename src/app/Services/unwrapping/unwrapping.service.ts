@@ -18,11 +18,11 @@ export class UnwrappingService {
     constructor(private httpClient: HttpClient) { }
 
     list<T>(endpoint: string, headers: { [key: string]: string }): Observable<T[]> {
-        return this.httpClient.get<T[]>(UnwrappingService.apiUrl + endpoint, headers)
+        return this.httpClient.get<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, headers)
             .pipe(
                 retry(3),
-                tap((res: T[]) => console.log(res)),
-                map((res: T[]) => res),
+                tap((res: ResponseWrapper<T>) => console.log(res)),
+                map((res: ResponseWrapper<T>) => res.results || [])
             );
     }
 

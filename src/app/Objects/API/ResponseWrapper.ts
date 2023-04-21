@@ -1,5 +1,5 @@
 export interface ResponseWrapper<T> {
-    results?: { readonly [id: string]: T };
+    results?: T[];
     result?: any;
     totalResultsCount: number;
     status: string;

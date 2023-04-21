@@ -4,11 +4,17 @@
     (newEntityPropertiesEmitter)="createNewProject($event)">
 </app-add-entity-button>
 
-<app-data-grid 
-    [displayedColumns]="displayedColumns" 
-    [items]="currentProjects"
-    [pageSettings]="pageSettings"
-    [allowPaging]="allowPaging"
-    [allowSelection]="allowSelection"
-    [allowSorting]="allowSorting">
-</app-data-grid>
+<div class="data-grid" *ngIf="project$ | async as projects; else loading">
+    <app-data-grid 
+        [displayedColumns]="displayedColumns" 
+        [items]="projects"
+        [pageSettings]="pageSettings"
+        [allowPaging]="allowPaging"
+        [allowSelection]="allowSelection"
+        [allowSorting]="allowSorting">
+    </app-data-grid>
+</div>
+
+<ng-template #loading>
+    <h1>Loading...</h1>
+</ng-template>

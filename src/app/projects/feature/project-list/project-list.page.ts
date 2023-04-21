@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ProjectBuilderComponent } from 'src/app/Components/project/project-builder/project-builder.component';
 import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
@@ -16,6 +16,8 @@ import { ProjectService } from 'src/app/Services/project/project.service';
     styleUrls: ['./project-list.page.scss']
 })
 export class ProjectListPage implements OnInit {
+
+    public project$!: Observable<ProjectResponse[]>;
 
     displayedColumns: { field: string, headerText: string }[] = [];
     currentProjects!: ProjectResponse[];
@@ -37,6 +39,9 @@ export class ProjectListPage implements OnInit {
 
     ngOnInit(): void {
         this.changePagination();
+
+        this.project$ = this.projectService.list();
+
     }
 
     createNewProject(newProjectProperties: ProjectCreateProperties): void {
