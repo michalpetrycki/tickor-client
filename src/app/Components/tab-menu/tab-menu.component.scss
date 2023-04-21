@@ -1,7 +1,13 @@
+@import 'colours';
+
 #quick-search-container {
     float: right;
 }
 
 #container {
     margin: 30px 30px 0px 30px;
+}
+
+.e-toolbar-item.e-icon.e-template.e-active {
+    background-color: $colour-burnt-sienna;
 }

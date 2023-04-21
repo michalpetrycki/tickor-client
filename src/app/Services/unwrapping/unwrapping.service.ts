@@ -4,37 +4,78 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { ResponseWrapper } from 'src/app/Objects/API/ResponseWrapper';
 import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
-import { map } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UnwrappingService {
 
-  private static readonly successStatuses = [200, 201, 'noChange'];
-  private static readonly apiUrl = environment.apiUrl;
+    private static readonly successStatuses = [200, 201, 'noChange'];
+    private static readonly apiUrl = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) { }
 
-  post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<PaginatedResponse<T>> {
-    return this.httpClient.post<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, body, headers)
-      .pipe(
-        map(res => {
-          this.checkForErrors(res);
-          const values = res.results ? Object.entries(res.results).map((value) => value[1]) : [res.result];
-          return {
-            totalResultsCount: res.totalResultsCount,
-            values
-          };
-        }
-        )
-      );
-  }
-
-  private checkForErrors<T>(res: ResponseWrapper<T>) {
-    if (!UnwrappingService.successStatuses.includes(res.status)) {
-      throw new Error(`Error status: ${res.status}, message: ${res.message}`);
+    list<T>(endpoint: string, headers: { [key: string]: string }): Observable<T[] | Error> {
+        return this.httpClient.get<T[]>(UnwrappingService.apiUrl + endpoint, headers)
+            .pipe(
+                retry(3),
+                tap((res: T[]) => console.log(res)),
+                map((res: T[]) => res),
+                catchError(this.handleError)
+            );
     }
-  }
+
+    get<T>(endpoint: string, headers: { [key: string]: string }): Observable<PaginatedResponse<T> | Error> {
+        return this.httpClient.get<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, headers)
+            .pipe(
+                retry(3),
+                tap((res: ResponseWrapper<T>) => console.log(res)),
+                map((res: ResponseWrapper<T>) => {
+                    return {
+                        totalResultsCount: 0,
+                        values: []
+                    };
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T | Error> {
+        return this.httpClient.post<T>(UnwrappingService.apiUrl + endpoint, body, headers)
+            .pipe(
+                retry(3),
+                tap(res => console.log(res)),
+                map((res: T) => res),
+                catchError(this.handleError)
+            );
+    }
+
+    put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T | Error> {
+        return this.httpClient.put<T>(UnwrappingService.apiUrl + endpoint, body, headers)
+            .pipe(
+                retry(3),
+                tap(res => console.log(res)),
+                map((res: T) => res),
+                catchError(this.handleError)
+            );
+    }
+
+    delete(endpoint: string, id: number, headers: { [key: string]: string }): Observable<Object | Error> {
+        return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, headers)
+            .pipe(
+                retry(3),
+                tap(res => { console.log(res); }),
+                map((res: Object) => {
+                    return res;
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    handleError(a: any): Observable<Error> {
+        return throwError(() => new Error('Something bad happened; please try again later.'));
+    }
 
 }
