@@ -1,10 +1,10 @@
-import { EndpointRequest } from 'src/app/Objects/API/EndpointRequest';
 import { PaginatedRequest } from 'src/app/Objects/API/PaginatedRequest';
 import { EntityResourceType } from 'src/app/Objects/entities/Entity';
 import { Pagination } from 'src/app/Objects/API/Pagination';
 import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
+import { ListRequest } from 'src/app/Objects/API/project/ListRequest';
 
-export class ProjectListRequest implements EndpointRequest, PaginatedRequest {
+export class ProjectListRequest implements ListRequest, PaginatedRequest {
 
     public readonly id?: number | number[];
     public readonly name?: string;

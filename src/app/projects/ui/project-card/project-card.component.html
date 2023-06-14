@@ -1,0 +1,45 @@
+<ng-container *ngIf="project; else loading">
+    <ng-container *ngIf="project">
+        <div style="margin: 50px; display: flex; flex-direction: row;">
+            <div tabindex="0" class="e-card e-card-horizontal">
+                <img src="{{project.logo}}" alt="project-logo">
+                <div class="e-card-stacked">
+                    <div class="e-card-header">
+                        <div class="e-card-header-caption">
+                            <div class="e-card-header-title">{{project.name}}</div>
+                        </div>
+                    </div>
+                    <div class="e-card-actions">
+                        <button mat-stroked-button (click)="goToProjectDetails(project.id)">
+                            <mat-icon>save</mat-icon>
+                            &nbsp;&nbsp;Go to
+                        </button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button mat-stroked-button (click)="deleteProject(project.id)">
+                            <mat-icon>delete_forever</mat-icon>
+                            &nbsp;&nbsp;Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #loading>
+    <div style="margin: 50px;display: flex;flex-direction: row;">
+        <div tabindex="0" class="e-card e-card-horizontal" style="width:400px">
+            <img src="./Code.png" alt="project-logo" style="height: 180px">
+            <div class="e-card-stacked">
+                <div class="e-card-header">
+                    <div class="e-card-header-caption">
+                        <div class="e-card-header-title">Philips Trimmer</div>
+                    </div>
+                </div>
+                <div class="e-card-content">
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

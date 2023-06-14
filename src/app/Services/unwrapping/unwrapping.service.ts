@@ -58,8 +58,8 @@ export class UnwrappingService {
             );
     }
 
-    delete(endpoint: string, id: number, headers: { [key: string]: string }): Observable<Object> {
-        return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, headers)
+    delete(endpoint: string, id: number | number[], headers: { [key: string]: string }): Observable<Object> {
+        return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, { headers, body: { id } })
             .pipe(
                 retry(3),
                 tap(res => { console.log(res); }),

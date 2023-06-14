@@ -14,7 +14,7 @@ import { BuilderService } from 'src/app/Services/builder/builder.service';
 import { ClientService } from 'src/app/Services/client/client.service';
 
 @Component({
-    selector: 'app-project-builder',
+    selector: 'app-project-builder2',
     templateUrl: './project-builder.component.html',
     styleUrls: ['./project-builder.component.scss']
 })

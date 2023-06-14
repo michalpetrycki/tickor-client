@@ -1,8 +1,10 @@
-import { EndpointRequest } from '../EndpointRequest';
+import { CreateRequest } from 'src/app/Objects/API/project/CreateRequest';
 import { EntityResourceType } from 'src/app/Objects/entities/Entity';
 import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
 
-export class ProjectCreateRequest implements EndpointRequest {
+export class ProjectCreateRequest implements CreateRequest {
+
+    public readonly id?: number;
     public readonly name!: string;
     public readonly active!: boolean;
     public readonly clientID!: number;

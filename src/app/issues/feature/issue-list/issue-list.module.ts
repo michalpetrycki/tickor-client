@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IssueListPageRoutingModule } from "src/app/issues/feature/issue-list/issue-list-routing.module";
@@ -7,7 +6,6 @@ import { SharedModule } from "src/app/modules/shared.module";
 
 @NgModule({
     imports: [
-        CommonModule,
         FormsModule,
         IssueListPageRoutingModule,
         SharedModule

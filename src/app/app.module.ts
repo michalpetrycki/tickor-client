@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -18,6 +17,10 @@ import { FieldInputComponent } from './Components/fields/field-input/field-input
 import { FieldDropdownComponent } from './Components/fields/field-dropdown/field-dropdown.component';
 import { FieldDatepickerComponent } from './Components/fields/field-datepicker/field-datepicker.component';
 import { MemberBuilderComponent } from './Components/member/member-builder/member-builder.component';
+import { MaterialModule } from 'src/app/modules/material.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmationDialogComponent } from './shared/ui/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +34,19 @@ import { MemberBuilderComponent } from './Components/member/member-builder/membe
     FieldInputComponent,
     FieldDropdownComponent,
     FieldDatepickerComponent,
-    MemberBuilderComponent
+    MemberBuilderComponent,
+    ConfirmationDialogComponent,
+    // ProjectCardComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SyncfusionModule
+    SyncfusionModule,
+    MaterialModule
   ],
   entryComponents: [],
   providers: [],

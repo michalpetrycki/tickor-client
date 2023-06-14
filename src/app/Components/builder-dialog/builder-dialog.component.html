@@ -1,10 +1,5 @@
-<ejs-dialog *ngIf="showDialog" #dialog
-    [isModal]="true" 
-    [header]="'New ' + title"
-    [animationSettings]="animationSettings"
-    width="30%">
-    <ng-template #content>
-        <ng-container *ngComponentOutlet="builder" >
-        </ng-container>
-    </ng-template>
-</ejs-dialog>
+<h1 mat-dialog-title>New {{data.title}}</h1>
+<mat-dialog-content>
+    <ng-container *ngComponentOutlet="data.component" >
+    </ng-container>
+</mat-dialog-content>

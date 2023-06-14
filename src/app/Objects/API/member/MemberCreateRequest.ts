@@ -1,8 +1,9 @@
-import { EndpointRequest } from '../EndpointRequest';
+import { CreateRequest } from 'src/app/Objects/API/project/CreateRequest';
 import { EntityResourceType } from 'src/app/Objects/entities/Entity';
 import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
 
-export class MemberCreateRequest implements EndpointRequest {
+export class MemberCreateRequest implements CreateRequest {
+
     public readonly username!: string;
     public readonly email!: string;
     public readonly kind!: string;

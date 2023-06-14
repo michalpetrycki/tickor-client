@@ -22,7 +22,8 @@ export class AddEntityButtonComponent<T> {
   }
 
   buttonClicked(): void {
-    this.builderService.openDialog();
+    // this.builderService.openDialog();
+    this.builderService.openBuilder(this.builderComponent);
   }
 
 }

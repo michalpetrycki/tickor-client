@@ -7,6 +7,7 @@ import { ProjectListFilter, ProjectListRequest } from 'src/app/Objects/API/proje
 import { ProjectCreateProperties, ProjectCreateRequest } from 'src/app/Objects/API/project/ProjectCreateRequest';
 import { ProjectEditProperties, ProjectEditRequest } from 'src/app/Objects/API/project/ProjectEditRequest';
 import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ProjectDeleteProperties, ProjectDeleteRequest } from 'src/app/Objects/API/project/ProjectDeleteRequest';
 
 @Injectable({
     providedIn: 'root'
@@ -44,6 +45,11 @@ export class ProjectService {
     public edit(properties: ProjectEditProperties): Observable<ProjectResponse | undefined> {
         const projectEditProperties = new ProjectEditRequest(properties);
         return this.apiService.put(projectEditProperties);
+    }
+
+    public delete(properties: ProjectDeleteProperties): Observable<Object> {
+        const projectDeleteRequest = new ProjectDeleteRequest(properties);
+        return this.apiService.delete(projectDeleteRequest);
     }
 
 }
