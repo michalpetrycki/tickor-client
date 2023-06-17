@@ -16,13 +16,14 @@ export class ProjectBuilderComponent implements OnInit {
     @Input() controls: ControlBase<string>[] | null = [];
     form!: FormGroup;
     payLoad = '';
-    controls$: Observable<ControlBase<any>[]>;
+    controls$: Observable<ControlBase<string>[]>;
 
     constructor(private qcs: ControlService, private controlsService: ProjectControlsService) {
         this.controls$ = this.controlsService.getControls();
     }
 
     ngOnInit() {
+        debugger;
         this.form = this.qcs.toFormGroup(this.controls as ControlBase<string>[]);
     }
 

@@ -12,6 +12,9 @@ import { SharedModule } from "src/app/modules/shared.module";
     ],
     declarations: [
         IssueListPage
+    ],
+    exports: [
+        IssueListPage
     ]
 })
 

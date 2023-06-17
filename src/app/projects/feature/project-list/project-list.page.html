@@ -1,5 +1,6 @@
 <app-add-entity-button
     [builderComponent]="builderComponent"
+    [controls$]="controls$ | async"
     [entityTypeName]="entityTypeName"
     (newEntityPropertiesEmitter)="createNewProject($event)">
 </app-add-entity-button>

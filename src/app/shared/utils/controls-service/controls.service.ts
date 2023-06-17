@@ -4,7 +4,9 @@ import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 
 @Injectable()
 export class ControlService {
+    
     toFormGroup(controls: ControlBase<string>[]) {
+    
         const group: any = {};
 
         controls.forEach(control => {
@@ -12,6 +14,9 @@ export class ControlService {
                 new FormControl(control.value || '', Validators.required)
                 : new FormControl(control.value || '');
         });
+
         return new FormGroup(group);
+
     }
+    
 }

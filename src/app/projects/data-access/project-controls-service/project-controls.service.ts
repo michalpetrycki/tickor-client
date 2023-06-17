@@ -12,6 +12,18 @@ export class ProjectControlsService {
 
         const questions: ControlBase<string>[] = [
 
+            // new DropdownControl({
+            //     key: 'brave',
+            //     label: 'Bravery Rating',
+            //     options: [
+            //         { key: 'solid', value: 'Solid' },
+            //         { key: 'great', value: 'Great' },
+            //         { key: 'good', value: 'Good' },
+            //         { key: 'unproven', value: 'Unproven' }
+            //     ],
+            //     order: 4
+            // }),
+
             new DropdownControl({
                 key: 'brave',
                 label: 'Bravery Rating',
@@ -21,31 +33,49 @@ export class ProjectControlsService {
                     { key: 'good', value: 'Good' },
                     { key: 'unproven', value: 'Unproven' }
                 ],
-                order: 4
+                order: 3
             }),
 
-            new TextboxControl({
-                key: 'projectName',
-                label: 'Project name',
+            new DropdownControl({
+                key: 'firstName',
+                label: 'First name',
+                value: 'Bombasto',
                 required: true,
                 order: 1
             }),
 
-            new DateControl({
-                key: 'startDate',
-                label: 'Start date',
-                type: 'date',
+            new DropdownControl({
+                key: 'emailAddress',
+                label: 'Email',
+                type: 'email',
                 order: 2
-            }),
-            new DateControl({
-                key: 'endDate',
-                label: 'End date',
-                type: 'date',
-                order: 3
             })
+
+
+            // new TextboxControl({
+            //     key: 'projectName',
+            //     label: 'Project name',
+            //     required: true,
+            //     order: 1
+            // }),
+
+            // new DateControl({
+            //     key: 'startDate',
+            //     label: 'Start date',
+            //     type: 'date',
+            //     order: 2
+            // }),
+
+            // new DateControl({
+            //     key: 'endDate',
+            //     label: 'End date',
+            //     type: 'date',
+            //     order: 3
+            // })
+
         ];
 
         return of(questions.sort((a, b) => a.order - b.order));
-        
+
     }
 }

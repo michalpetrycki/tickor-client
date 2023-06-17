@@ -8,8 +8,16 @@ import { ControlBase } from 'src/app/shared/utils/controls/control-base';
     templateUrl: './form-control.component.html'
 })
 export class FormControlComponent {
+
     @Input() control!: ControlBase<string>;
     @Input() form!: FormGroup;
-    
-    get isValid() { return this.form.controls[this.control.key].valid; }
+
+    ngOnInit() {
+
+    }
+
+    get isValid(): boolean {
+        return this.form.controls[this.control.key]?.valid;
+    }
+
 }
