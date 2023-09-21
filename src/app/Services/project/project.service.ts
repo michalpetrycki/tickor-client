@@ -6,7 +6,7 @@ import { Pagination } from 'src/app/Objects/API/Pagination';
 import { ProjectListFilter, ProjectListRequest } from 'src/app/Objects/API/project/ProjectListRequest';
 import { ProjectCreateProperties, ProjectCreateRequest } from 'src/app/Objects/API/project/ProjectCreateRequest';
 import { ProjectEditProperties, ProjectEditRequest } from 'src/app/Objects/API/project/ProjectEditRequest';
-import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ProjectResponse } from 'src/app/projects/utils/ProjectResponse';
 import { ProjectDeleteProperties, ProjectDeleteRequest } from 'src/app/Objects/API/project/ProjectDeleteRequest';
 
 @Injectable({

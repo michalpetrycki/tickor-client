@@ -22,7 +22,7 @@ export class RequestApiService<ResponseType> {
 
     public list(requestBody: ListRequest): Observable<ResponseType[]> {
         const headers = { 'Authorization': this.authService.token };
-        return this.http.list<ResponseType>(requestBody.getEndpoint(), headers);
+        return this.http.list<ResponseType>(requestBody.getEndpoint(), requestBody, headers);
     }
 
     public getPaginated(requestBody: ListRequest): Observable<PaginatedResponse<ResponseType>> {

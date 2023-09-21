@@ -1,2 +1,2 @@
-<app-header></app-header>
-<app-tab-menu></app-tab-menu>
+<app-header (selectionChangedEvent)="selectionChanged($event)"></app-header>
+<app-tab-menu [selection]="selection"></app-tab-menu>

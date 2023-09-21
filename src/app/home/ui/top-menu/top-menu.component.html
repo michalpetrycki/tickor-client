@@ -1,0 +1,20 @@
+<div id="account">
+    <ul>
+        <li *ngFor="let item of accountItems">
+            <p>{{item}}</p>
+        </li>
+    </ul>
+    <button (click)="admin()">Admin</button>
+</div>
+<div id="dropdown">
+    <form [formGroup]="clientSelectionForm" (ngSubmit)="submitClientForm()">
+        <label id="clientDdlLbl" for="clientDdl"></label>
+            <app-field-dropdown [param]="clientParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
+            <app-field-dropdown [param]="projectParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
+        <button ejs-button 
+            type="submit" 
+            name="submit-btn"
+            [disabled]="!isSelection">Go
+        </button>
+    </form>
+</div>

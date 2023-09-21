@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
-import { ProjectResponse } from 'src/app/Objects/API/project/ProjectResponse';
+import { ProjectResponse } from 'src/app/projects/utils/ProjectResponse';
 import { ClientService } from 'src/app/Services/client/client.service';
 import { ProjectService } from 'src/app/Services/project/project.service';
 import { ProjectBuilderComponent } from 'src/app/projects/ui/project-builder/project-builder.component';

@@ -6,6 +6,7 @@ import { ResponseWrapper } from 'src/app/Objects/API/ResponseWrapper';
 import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
 import { catchError, map, retry, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { ListRequest } from 'src/app/Objects/API/project/ListRequest';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,8 @@ export class UnwrappingService {
 
     constructor(private httpClient: HttpClient) { }
 
-    list<T>(endpoint: string, headers: { [key: string]: string }): Observable<T[]> {
-        return this.httpClient.get<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, headers)
+    list<T>(endpoint: string, requestBody: ListRequest, headers: { [key: string]: string }): Observable<T[]> {
+        return this.httpClient.post<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, requestBody, headers)
             .pipe(
                 retry(3),
                 tap((res: ResponseWrapper<T>) => console.log(res)),
