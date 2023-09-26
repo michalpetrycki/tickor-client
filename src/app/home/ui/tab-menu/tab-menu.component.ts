@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-tab-menu',
@@ -11,7 +12,9 @@ export class TabMenuComponent implements OnInit, OnChanges {
 
     tabs: { path: string, title: string }[] = [];
 
-    constructor() {
+    constructor(
+        private router: Router
+    ) {
         this.tabs = [
             { path: '/projects', title: 'Projects' },
             { path: '/members', title: 'Members' },
@@ -27,6 +30,7 @@ export class TabMenuComponent implements OnInit, OnChanges {
             this.tabs = [
                 { path: '/issues', title: 'Issues' }
             ];
+            this.router.navigate(['/issues'], { state: { selection: this.selection } });
         }
     }
 

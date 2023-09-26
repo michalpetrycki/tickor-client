@@ -1,14 +1,23 @@
-<app-data-grid 
-    [displayedColumns]="displayedColumns" 
-    [items]="currentIssues"
-    [pageSettings]="pageSettings"
-    [allowPaging]="allowPaging"
-    [allowSelection]=allowSelection
-    [allowSorting]="allowSorting">
-</app-data-grid>
+<div id="content" *ngIf="issues$ | async as issues; else loading">
+    <app-data-grid *ngIf="issues.length > 0" 
+        [displayedColumns]="displayedColumns" 
+        [items]="issues"
+        [pageSettings]="pageSettings"
+        [allowPaging]="allowPaging"
+        [allowSelection]=allowSelection
+        [allowSorting]="allowSorting">
+    </app-data-grid>
+    <div *ngIf="issues.length === 0">No data</div>
+</div>
+
+<ng-template #loading>
+    <div>Loading issues...</div>
+</ng-template>
 
 <app-add-entity-button
-    [builderComponent]="builderComponent"
     [entityTypeName]="entityTypeName"
-    (newEntityPropertiesEmitter)="createNewIssue($event)">
+    [title]="title"
+    [message]="message"
+    [controls]="controls$ | async"
+    (createEventEmitter)="createNewIssue($event)">
 </app-add-entity-button>

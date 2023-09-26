@@ -54,7 +54,6 @@ export class TopMenuComponent {
             }
         });
 
-
         this.selectionChangedEvent = new EventEmitter<any>();
 
     }

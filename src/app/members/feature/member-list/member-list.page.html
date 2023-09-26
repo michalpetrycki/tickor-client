@@ -8,7 +8,6 @@
 </app-data-grid>
 
 <app-add-entity-button
-    [builderComponent]="builderComponent"
     [entityTypeName]="entityTypeName"
-    (newEntityPropertiesEmitter)="createNewMember($event)">
+    (createEventEmitter)="createNewMember($event)">
 </app-add-entity-button>

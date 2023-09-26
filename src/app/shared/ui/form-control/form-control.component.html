@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-    <label [attr.for]="control.key">{{control.label}}</label>
+    <label [attr.for]="control.key">{{control?.label}}</label>
   
     <div [ngSwitch]="control.controlType">
   
@@ -7,7 +7,7 @@
             [id]="control.key" [type]="control.type">
   
         <select *ngSwitchCase="'dropdown'" [id]="control.key"  [formControlName]="control.key">
-            <option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
+            <option *ngFor="let opt of control.options | async" [value]="opt.value">{{opt.displayString}}</option>
         </select>
   
     </div>

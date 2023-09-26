@@ -2,7 +2,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, Subject } from 'rxjs';
-import { BuilderDialogComponent } from 'src/app/Components/builder-dialog/builder-dialog.component';
+import { BuilderDialogComponent } from 'src/app/shared/ui/builder-dialog/builder-dialog.component';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 
 @Injectable({
@@ -39,25 +39,22 @@ export class BuilderService<T> {
 
 
 
-    openBuilder(builderComponent: ComponentType<any>, controls$: ControlBase<string>[] | null): void {
-
-        debugger;
+    openBuilder(controls: ControlBase<string>[] | null, title: string, message: string): void {
 
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
-            title: 'Create new tenant',
-            message: 'Are you sure you want to remove this tenant?',
-            component: builderComponent,
-            controls$: controls$
+            title,
+            message,
+            controls
         };
 
-        const dialogHook = this.dialog.open(BuilderDialogComponent, dialogConfig);
-        dialogHook.afterClosed().subscribe(() => {
-            debugger;
-        });
+        this.dialog.open(BuilderDialogComponent, dialogConfig)
+            .afterClosed().subscribe(() => {
+                debugger;
+            });
 
     }
 

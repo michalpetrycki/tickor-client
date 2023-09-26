@@ -10,7 +10,7 @@ export class ProjectControlsService {
 
     getControls() {
 
-        const questions: ControlBase<string>[] = [
+        const controls: ControlBase<string>[] = [
 
             // new DropdownControl({
             //     key: 'brave',
@@ -27,12 +27,13 @@ export class ProjectControlsService {
             new DropdownControl({
                 key: 'brave',
                 label: 'Bravery Rating',
-                options: [
-                    { key: 'solid', value: 'Solid' },
-                    { key: 'great', value: 'Great' },
-                    { key: 'good', value: 'Good' },
-                    { key: 'unproven', value: 'Unproven' }
-                ],
+                options: of([]),
+                // options: [
+                //     { key: 'solid', value: 'Solid' },
+                //     { key: 'great', value: 'Great' },
+                //     { key: 'good', value: 'Good' },
+                //     { key: 'unproven', value: 'Unproven' }
+                // ],
                 order: 3
             }),
 
@@ -75,7 +76,7 @@ export class ProjectControlsService {
 
         ];
 
-        return of(questions.sort((a, b) => a.order - b.order));
+        return of(controls.sort((a, b) => a.order - b.order));
 
     }
 }

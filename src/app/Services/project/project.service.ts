@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
-import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
 import { Pagination } from 'src/app/Objects/API/Pagination';
-import { ProjectListFilter, ProjectListRequest } from 'src/app/Objects/API/project/ProjectListRequest';
-import { ProjectCreateProperties, ProjectCreateRequest } from 'src/app/Objects/API/project/ProjectCreateRequest';
-import { ProjectEditProperties, ProjectEditRequest } from 'src/app/Objects/API/project/ProjectEditRequest';
 import { ProjectResponse } from 'src/app/projects/utils/ProjectResponse';
-import { ProjectDeleteProperties, ProjectDeleteRequest } from 'src/app/Objects/API/project/ProjectDeleteRequest';
+import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
+import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
+import { ProjectListFilter, ProjectListRequest } from 'src/app/projects/utils/ProjectListRequest';
+import { ProjectEditProperties, ProjectEditRequest } from 'src/app/projects/utils/ProjectEditRequest';
+import { ProjectCreateProperties, ProjectCreateRequest } from 'src/app/projects/utils/ProjectCreateRequest';
+import { ProjectDeleteProperties, ProjectDeleteRequest } from 'src/app/projects/utils/ProjectDeleteRequest';
 
 @Injectable({
     providedIn: 'root'

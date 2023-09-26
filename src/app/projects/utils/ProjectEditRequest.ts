@@ -1,6 +1,6 @@
 import { EntityResourceType } from 'src/app/Objects/entities/Entity';
+import { EndpointRequest } from 'src/app/Objects/API/EndpointRequest';
 import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
-import { EndpointRequest } from '../EndpointRequest';
 
 export class ProjectEditRequest implements EndpointRequest {
     public readonly id: number;

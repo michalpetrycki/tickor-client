@@ -1,3 +1,6 @@
+import { Observable, of } from "rxjs";
+import { DropdownOption } from "src/app/Objects/params/DropdownOption";
+
 export class ControlBase<T> {
 
     value: T | undefined;
@@ -7,7 +10,7 @@ export class ControlBase<T> {
     order: number;
     controlType: string;
     type: string;
-    options: { key: string, value: string }[];
+    options: Observable<DropdownOption[]>;
 
     constructor(options: {
         value?: T;
@@ -17,7 +20,7 @@ export class ControlBase<T> {
         order?: number;
         controlType?: string;
         type?: string;
-        options?: { key: string, value: string }[];
+        options?: Observable<DropdownOption[]>;
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
@@ -26,7 +29,7 @@ export class ControlBase<T> {
         this.order = options.order === undefined ? 1 : options.order;
         this.controlType = options.controlType || '';
         this.type = options.type || '';
-        this.options = options.options || [];
+        this.options = options.options || of([]);
     }
 
 }

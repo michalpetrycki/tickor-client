@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
-import { ProjectResponse } from 'src/app/projects/utils/ProjectResponse';
-import { ClientService } from 'src/app/Services/client/client.service';
-import { ProjectService } from 'src/app/Services/project/project.service';
-import { ProjectBuilderComponent } from 'src/app/projects/ui/project-builder/project-builder.component';
-import { ControlService } from 'src/app/shared/utils/controls-service/controls.service';
-import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { delay } from 'rxjs/operators';
-import { ProjectControlsService } from 'src/app/projects/data-access/project-controls-service/project-controls.service';
+import { Component, OnInit } from '@angular/core';
+import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
+import { ClientService } from 'src/app/Services/client/client.service';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
+import { ProjectResponse } from 'src/app/projects/utils/ProjectResponse';
+import { ProjectService } from 'src/app/Services/project/project.service';
+import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
+import { ControlService } from 'src/app/shared/utils/controls-service/controls.service';
+import { ProjectBuilderComponent } from 'src/app/projects/ui/project-builder/project-builder.component';
+import { ProjectControlsService } from 'src/app/projects/data-access/project-controls/project-controls.service';
 
 @Component({
     selector: 'app-project-list',
@@ -37,7 +37,8 @@ export class ProjectListPage implements OnInit {
 
     constructor(
         private projectService: ProjectService,
-        private projectControlService: ProjectControlsService) {
+        private projectControlService: ProjectControlsService
+    ) {
         this.selectedClient = ClientService.selectedClient;
     }
 

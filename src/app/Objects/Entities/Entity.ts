@@ -11,11 +11,13 @@ export class Entity {
 export enum EntityType {
     client = 'Client',
     project = 'Project',
-    member = 'Member'
+    member = 'Member',
+    issue = 'Issue'
 }
 
 export enum EntityResourceType {
     client = 'client',
     project = 'project',
-    member = 'person'
+    member = 'person',
+    issue = 'issue'
 }
