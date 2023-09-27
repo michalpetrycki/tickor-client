@@ -1,64 +1,62 @@
-import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
-import { ProjectService } from 'src/app/Services/project/project.service';
+import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
-import { DropdownControl } from 'src/app/shared/utils/controls/dropdown-control';
 import { TextboxControl } from 'src/app/shared/utils/controls/textbox-control';
+import { DropdownControl } from 'src/app/shared/utils/controls/dropdown-control';
 import { ParamHelperService } from 'src/app/shared/utils/param/param.helper.service';
+import { IssueStatusListRequest } from 'src/app/shared/utils/list-request/issue-status-list.request';
+import { IssueCategoryListRequest } from 'src/app/shared/utils/list-request/issue-category-list.request';
+import { DropdownOptionService } from 'src/app/shared/data-access/dropdown-option/dropdown-option.service';
+import { DropdownOptionResponse } from 'src/app/shared/utils/response/dropdown-options.response';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class IssueControlsService {
 
-  constructor(
-    private projectService: ProjectService
-  ) { }
+    constructor(
+        private dropdownOptionService: DropdownOptionService
+    ) { }
 
-  getControls() {
+    getControls() {
 
-    const controls: ControlBase<string>[] = [
+        const controls: ControlBase<string>[] = [
 
-      new DropdownControl({
-        key: 'status',
-        label: 'Issue status',
-        options: this.projectService.list().pipe(map((res: any) => ParamHelperService.toDropdownOptions(res))).pipe(delay(5000)),
-        order: 1
-      }),
+            new DropdownControl({
+                key: 'status',
+                label: 'Status',
+                options: this.dropdownOptionService.list(new IssueStatusListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
+                order: 1
+            }),
 
-      new TextboxControl({
-        key: 'subject',
-        label: 'Subject',
-        type: 'text',
-        required: true,
-        order: 2
-      }),
+            new TextboxControl({
+                key: 'subject',
+                label: 'Subject',
+                type: 'text',
+                required: true,
+                order: 2
+            }),
 
-      new TextboxControl({
-        key: 'name',
-        label: 'Name',
-        type: 'text',
-        required: true,
-        order: 3
-      }),
+            new TextboxControl({
+                key: 'name',
+                label: 'Name',
+                type: 'text',
+                required: true,
+                order: 3
+            }),
 
-      new DropdownControl({
-        key: 'brave',
-        label: 'Bravery Rating',
-        options: of([
-          { value: 'solid', displayString: 'Solid' },
-          { value: 'great', displayString: 'Great' },
-          { value: 'good', displayString: 'Good' },
-          { value: 'unproven', displayString: 'Unproven' }
-        ]),
-        order: 4
-      }),
+            new DropdownControl({
+                key: 'category',
+                label: 'Category',
+                options: this.dropdownOptionService.list(new IssueCategoryListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
+                order: 4
+            })
 
-    ];
+        ];
 
-    return of(controls.sort((a, b) => a.order - b.order));
+        return of(controls.sort((a, b) => a.order - b.order));
 
-  }
+    }
 
 }

@@ -19,5 +19,7 @@ export enum EntityResourceType {
     client = 'client',
     project = 'project',
     member = 'person',
-    issue = 'issue'
+    issue = 'issue',
+    issueCategory = 'issue-category',
+    issueStatus = 'issue-status'
 }
