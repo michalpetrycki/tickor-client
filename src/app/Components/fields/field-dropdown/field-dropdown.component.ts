@@ -1,10 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldSettingsModel, FilteringEventArgs, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
-import { of } from 'rxjs';
-import { ClientResponse } from 'src/app/Objects/API/client/ClientResponse';
-import { DropdownOption } from 'src/app/Objects/params/DropdownOption';
+import { FilteringEventArgs, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Param } from 'src/app/Objects/params/Param';
+import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 
 @Component({
     selector: 'app-field-dropdown',
@@ -13,7 +11,7 @@ import { Param } from 'src/app/Objects/params/Param';
 })
 export class FieldDropdownComponent implements OnInit {
 
-    @Input() param!: Param;
+    @Input() control!: ControlBase<string>;
     @Input() formGroup!: FormGroup;
     @ViewChild('ddl') ddl: any;
 
@@ -32,12 +30,12 @@ export class FieldDropdownComponent implements OnInit {
     }
 
     public select(event: SelectEventArgs) {
-        if (this.param.onValueChanges) this.param.onValueChanges(Number(event.itemData.value));
+        if (this.control.onValueChanges) this.control.onValueChanges(Number(event.itemData.value));
     }
 
 
     private loadItems(): void {
-        this.param.values$?.subscribe((res: any) => {
+        this.control.options$?.subscribe((res: any) => {
             this.ddl.value = null;
             this.filteredItems = res;
         });

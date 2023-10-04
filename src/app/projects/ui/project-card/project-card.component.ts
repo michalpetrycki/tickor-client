@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ConfirmationDialogComponent } from 'src/app/shared/ui/confirmation-dialog/confirmation-dialog.component';
+// import { ConfirmationDialogComponent } from 'src/app/shared/ui/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
     selector: 'app-project-card',
@@ -34,14 +34,14 @@ export class ProjectCardComponent implements OnInit {
             message: 'Are you sure you want to remove this project?'
         };
 
-        const dialogHook = this.dialog.open(ConfirmationDialogComponent, dialogConfig);
-        dialogHook.afterClosed().subscribe((confirm: boolean) => {
+        // const dialogHook = this.dialog.open(ConfirmationDialogComponent, dialogConfig);
+        // dialogHook.afterClosed().subscribe((confirm: boolean) => {
 
-            if (confirm) {
-                this.removeProject.emit(projectID)
-            }
+        //     if (confirm) {
+        //         this.removeProject.emit(projectID)
+        //     }
 
-        });
+        // });
 
     }
 

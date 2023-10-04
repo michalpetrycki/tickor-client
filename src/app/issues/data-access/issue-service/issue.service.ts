@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { PaginatedResponse } from 'src/app/Objects/API/PaginatedResponse';
 import { Pagination } from 'src/app/Objects/API/Pagination';
 import { RequestApiService } from 'src/app/Services/request-api/request-api.service';
+import { IssueCreateProperties, IssueCreateRequest } from 'src/app/issues/utils/IssueCreateRequest';
 import { IssueDeleteProperties, IssueDeleteRequest } from 'src/app/issues/utils/IssueDeleteRequest';
 import { IssueListRequest, IssueListFilter } from 'src/app/issues/utils/IssueListRequest';
 import { IssueResponse } from 'src/app/issues/utils/IssueResponse';
@@ -25,10 +26,10 @@ export class IssueService {
         return this.apiService.getPaginated(issueListRequest);
     }
 
-    // public create(properties: IssueCreateProperties): Observable<IssueResponse> {
-    //     const issueCreateProperties = new IssueCreateRequest(properties);
-    //     return this.apiService.post(issueCreateProperties);
-    // }
+    public create(properties: IssueCreateProperties): Observable<IssueResponse> {
+        const issueCreateProperties = new IssueCreateRequest(properties);
+        return this.apiService.post(issueCreateProperties);
+    }
 
     // public edit(properties: IssueEditProperties): Observable<IssueResponse | undefined> {
     //     const issueEditProperties = new IssueEditRequest(properties);

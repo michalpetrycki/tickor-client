@@ -27,7 +27,7 @@ export class ProjectControlsService {
             new DropdownControl({
                 key: 'brave',
                 label: 'Bravery Rating',
-                options: of([]),
+                options$: of([]),
                 // options: [
                 //     { key: 'solid', value: 'Solid' },
                 //     { key: 'great', value: 'Great' },

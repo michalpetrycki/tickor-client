@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Param } from 'src/app/Objects/params/Param';
 import { TopMenuParamHelperService } from 'src/app/home/data-access/top-menu.param.helper.service';
+import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { TopMenuParamHelperService } from 'src/app/home/data-access/top-menu.par
 })
 export class TopMenuComponent {
 
-    private dropdownParams!: Param[];
+    private controls!: ControlBase<any>[];
     @Output() selectionChangedEvent: EventEmitter<any>;
     isSelection = false;
 
@@ -22,12 +22,12 @@ export class TopMenuComponent {
     fields: Object;
     clientSelectionForm: FormGroup;
 
-    get clientParam(): Param {
-        return this.dropdownParams[0];
+    get clientParam(): ControlBase<any> {
+        return this.controls[0];
     }
 
-    get projectParam(): Param {
-        return this.dropdownParams[1];
+    get projectParam(): ControlBase<any> {
+        return this.controls[1];
     }
 
     constructor(
@@ -36,7 +36,7 @@ export class TopMenuComponent {
         this.accountItems = ['Sign in'];
         this.fields = { text: 'displayString', value: 'value' };
 
-        this.dropdownParams = this.paramHelperService.getDropdownParams(this.fields);
+        this.controls = this.paramHelperService.getControls(this.fields);
 
         this.clientSelectionForm = new FormGroup({
             Client: new FormControl(),

@@ -15,7 +15,6 @@ export class BuilderService<T> {
     private newEntityProperties: Subject<T> = new Subject<T>();
 
     constructor(private dialog: MatDialog) { }
-    // constructor() {}
 
     openDialog(): void {
         this.showDialogSubject.next(true);
@@ -37,8 +36,6 @@ export class BuilderService<T> {
         return this.newEntityProperties.asObservable();
     }
 
-
-
     openBuilder(controls: ControlBase<string>[] | null, title: string, message: string): void {
 
         const dialogConfig = new MatDialogConfig();
@@ -51,9 +48,15 @@ export class BuilderService<T> {
             controls
         };
 
+        dialogConfig.panelClass = 'builder-dialog';
+
         this.dialog.open(BuilderDialogComponent, dialogConfig)
-            .afterClosed().subscribe(() => {
-                debugger;
+            .afterClosed().subscribe((createProperties?: T) => {
+
+                if (createProperties) {
+                    this.emitNewEntityProperties(createProperties);
+                }
+
             });
 
     }

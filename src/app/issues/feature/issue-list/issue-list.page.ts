@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { Observable } from 'rxjs';
-import { IssueService } from 'src/app/issues/data-access/issue-service/issue.service';
-// import { IssueBuilderComponent } from 'src/app/issues/ui/issue-builder/issue-builder.component';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { IssueResponse } from 'src/app/issues/utils/IssueResponse';
-import { IssueControlsService } from 'src/app/issues/data-access/issue-controls/issue-controls.service';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
+import { IssueService } from 'src/app/issues/data-access/issue-service/issue.service';
+import { IssueControlsService } from 'src/app/issues/data-access/issue-controls/issue-controls.service';
+import { IssueCreateProperties } from 'src/app/issues/utils/IssueCreateRequest';
+import { ToastService } from 'src/app/shared/utils/toast-service/toast.service';
 
 @Component({
     selector: 'app-issue-list',
     templateUrl: './issue-list.page.html',
     styleUrls: ['./issue-list.page.scss']
 })
-export class IssueListPage implements OnInit {
+export class IssueListPage {
 
     displayedColumns: { field: string, headerText: string }[] = [];
     pageSettings: PageSettingsModel = {
@@ -24,15 +25,10 @@ export class IssueListPage implements OnInit {
     allowSorting = true;
     selectedClient: IssueResponse | undefined;
 
-    entityTypeName = 'Issue';
-    // builderComponent = IssueBuilderComponent;
-
+    entityTypeName!: IssueCreateProperties;
     currentIssues: any[];
-
     selection: any;
-
     issues$: Observable<IssueResponse[]>
-
     title!: string;
     message!: string;
 
@@ -41,7 +37,8 @@ export class IssueListPage implements OnInit {
     constructor(
         private router: Router,
         private issueService: IssueService,
-        private issueControlService: IssueControlsService
+        private issueControlService: IssueControlsService,
+        private toastService: ToastService
     ) {
         this.displayedColumns = [];
         this.currentIssues = [];
@@ -56,10 +53,17 @@ export class IssueListPage implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    createNewIssue(properties: IssueCreateProperties): void {
+
+        this.toastService.showToast({ title: 'Create issue', content: 'Issue created successfully' });
+
+        // this.issueService.create(properties).subscribe((newIssue: IssueResponse) => {
+
+        // },
+        //     (error: any) => {
+
+        //     });
 
     }
-
-    createNewIssue(a: any): void { }
 
 }

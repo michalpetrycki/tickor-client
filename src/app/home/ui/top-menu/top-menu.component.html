@@ -9,8 +9,8 @@
 <div id="dropdown">
     <form [formGroup]="clientSelectionForm" (ngSubmit)="submitClientForm()">
         <label id="clientDdlLbl" for="clientDdl"></label>
-            <app-field-dropdown [param]="clientParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
-            <app-field-dropdown [param]="projectParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
+            <app-field-dropdown [control]="clientParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
+            <app-field-dropdown [control]="projectParam" [formGroup]="clientSelectionForm"></app-field-dropdown>
         <button ejs-button 
             type="submit" 
             name="submit-btn"

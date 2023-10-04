@@ -10,7 +10,10 @@ export class ControlBase<T> {
     order: number;
     controlType: string;
     type: string;
-    options: Observable<DropdownOption[]>;
+    readonly?: boolean;
+    fields?: Object;
+    options$: Observable<DropdownOption[]> | undefined;
+    onValueChanges?: (selection: number | string | boolean) => void;
 
     constructor(options: {
         value?: T;
@@ -20,7 +23,10 @@ export class ControlBase<T> {
         order?: number;
         controlType?: string;
         type?: string;
-        options?: Observable<DropdownOption[]>;
+        readonly?: boolean;
+        fields?: Object;
+        options$?: Observable<DropdownOption[]>;
+        onValueChanges?: (selection: number | string | boolean) => void;
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
@@ -29,7 +35,10 @@ export class ControlBase<T> {
         this.order = options.order === undefined ? 1 : options.order;
         this.controlType = options.controlType || '';
         this.type = options.type || '';
-        this.options = options.options || of([]);
+        this.readonly = options.readonly;
+        this.fields = options.fields;
+        this.options$ = options.options$ || of([]);
+        this.onValueChanges = options.onValueChanges;
     }
 
 }

@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
@@ -19,23 +19,16 @@ export class IssueControlsService {
         private dropdownOptionService: DropdownOptionService
     ) { }
 
-    getControls() {
+    getControls(): Observable<ControlBase<string>[]> {
 
         const controls: ControlBase<string>[] = [
-
-            new DropdownControl({
-                key: 'status',
-                label: 'Status',
-                options: this.dropdownOptionService.list(new IssueStatusListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
-                order: 1
-            }),
 
             new TextboxControl({
                 key: 'subject',
                 label: 'Subject',
                 type: 'text',
                 required: true,
-                order: 2
+                order: 1
             }),
 
             new TextboxControl({
@@ -43,13 +36,20 @@ export class IssueControlsService {
                 label: 'Name',
                 type: 'text',
                 required: true,
+                order: 2
+            }),
+
+            new DropdownControl({
+                key: 'status',
+                label: 'Status',
+                options$: this.dropdownOptionService.list(new IssueStatusListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
                 order: 3
             }),
 
             new DropdownControl({
                 key: 'category',
                 label: 'Category',
-                options: this.dropdownOptionService.list(new IssueCategoryListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
+                options$: this.dropdownOptionService.list(new IssueCategoryListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
                 order: 4
             })
 

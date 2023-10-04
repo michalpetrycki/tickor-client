@@ -1,0 +1,32 @@
+.controls-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form-row {
+    height: 6rem;
+    margin-bottom: 0.5rem;
+    flex-basis: 15rem;
+    margin-right: 2rem;
+    height: 4rem;
+}
+
+.close-button{
+    float: right;
+    position: relative;
+    cursor: pointer;
+}
+
+.close-button .material-icons {
+    line-height: 1.25;
+}
+  
+.mat-dialog-actions {
+    width: 100%;
+}
+
+.e-info {
+    width: 90%;
+    margin-left: 5%;
+}

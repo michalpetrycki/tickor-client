@@ -2,9 +2,9 @@
     <ejs-dropdownlist
         #ddl
         [dataSource]="filteredItems" 
-        [fields]="param.fields" 
-        placeholder="{{param.name}}"
-        formControlName="{{param.name}}"
+        [fields]="{ text: 'displayString', value: 'value' }" 
+        placeholder="{{control.label}}"
+        formControlName="{{control.key}}"
         [allowFiltering]="true"
         (filtering)="onFiltering($event)"
         (select)="select($event)">

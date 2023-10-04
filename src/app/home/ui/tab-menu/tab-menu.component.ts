@@ -15,6 +15,7 @@ export class TabMenuComponent implements OnInit, OnChanges {
     constructor(
         private router: Router
     ) {
+        this.tabs = [];
         this.tabs = [
             { path: '/projects', title: 'Projects' },
             { path: '/members', title: 'Members' },

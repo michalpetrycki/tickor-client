@@ -1,18 +1,29 @@
-<div [formGroup]="form">
-    <label [attr.for]="control.key">{{control?.label}}</label>
-  
+<div [formGroup]="formGroup">
+      
     <div [ngSwitch]="control.controlType">
+
+        <label for="control.key" class="input-label">{{control.label}}</label>
+        <ejs-textbox *ngSwitchCase="'textbox'"
+            [formControlName]="control.key"
+            [id]="control.key"
+        ></ejs-textbox>
   
-        <input *ngSwitchCase="'textbox'" [formControlName]="control.key"
-            [id]="control.key" [type]="control.type">
-  
-        <select *ngSwitchCase="'dropdown'" [id]="control.key"  [formControlName]="control.key">
-            <option *ngFor="let opt of control.options | async" [value]="opt.value">{{opt.displayString}}</option>
-        </select>
+        <!-- <ejs-dropdownlist *ngSwitchCase="'dropdown'"
+            id="control.key"
+            #dropdown
+            [dataSource]="control.options | async"
+            [fields]="{ text: 'displayString', value: 'value' }"
+            popupHeight='220px'
+            (select)="select($event)">
+        </ejs-dropdownlist> -->
+        <ng-container *ngSwitchCase="'dropdown'">
+            <app-field-dropdown [control]="control" [formGroup]="formGroup"></app-field-dropdown>
+        </ng-container>
+        
+        <div class="error-message" *ngIf="!isValid">
+            {{control.label}} is required
+        </div>
   
     </div>
   
-    <div class="errorMessage" *ngIf="!isValid">
-        {{control.label}} is required
-    </div>
 </div>

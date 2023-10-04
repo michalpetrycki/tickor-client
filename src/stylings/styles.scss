@@ -48,3 +48,15 @@ body {
     margin: 0;
     background-color: $colour-dutch-white;
 }
+
+.builder-dialog .mat-dialog-container {
+    height: 400px;
+    width: 600px;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+}
+
+.builder-dialog .mat-dialog-content {
+    overflow: visible !important;
+}
