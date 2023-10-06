@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { ToastComponent } from '@syncfusion/ej2-angular-notifications';
+import { EventEmitter, Injectable } from '@angular/core';
+import { ButtonModelPropsModel, ToastComponent } from '@syncfusion/ej2-angular-notifications';
 import { ToastUtility } from '@syncfusion/ej2-notifications';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -8,21 +9,36 @@ import { ToastUtility } from '@syncfusion/ej2-notifications';
 export class ToastService {
 
     public toastObject?: ToastComponent;
+    public retrySubject!: Subject<void>;
 
-    constructor() { }
+    constructor() {
+        this.retrySubject = new Subject();
+    }
 
     public showToast(args: any): void {
 
+        let buttons: ButtonModelPropsModel[] = [{
+            model: { content: 'OK' },
+            click: this.closeToast.bind(this)
+        }];
+
+        if (!args.success) {
+
+            buttons.push({
+                model: { content: 'Retry' },
+                click: this.retryClick.bind(this)
+            });
+        }
+
         this.toastObject = ToastUtility.show({
             title: args?.title ?? '',
-            content: args?.content ?? '',
+            content: (args?.content ?? '') + (args?.errors ? '<br>' + args?.errors?.join('<br>') : ''),
             timeOut: 10000,
             position: { X: 'Right', Y: 'bottom' },
             showCloseButton: true,
             click: this.toastClick.bind(this),
-            buttons: [{
-                model: { content: 'Close' }, click: this.closeToast.bind(this)
-            }]
+            buttons,
+            cssClass: args?.success ? 'e-toast-success' : 'e-toast-danger',
         }) as ToastComponent;
 
     }
@@ -32,7 +48,11 @@ export class ToastService {
     }
 
     public toastClick(): void {
-        console.log('Toast click event is triggered');
+        this.closeToast();
+    }
+
+    public retryClick(): void {
+        this.retrySubject.next();
     }
 
 }

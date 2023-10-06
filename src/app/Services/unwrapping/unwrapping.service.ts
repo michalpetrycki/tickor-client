@@ -44,7 +44,6 @@ export class UnwrappingService {
     post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
         return this.httpClient.post<T>(UnwrappingService.apiUrl + endpoint, body, headers)
             .pipe(
-                retry(3),
                 tap(res => console.log(res)),
                 map((res: T) => res)
             );
@@ -53,7 +52,6 @@ export class UnwrappingService {
     put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
         return this.httpClient.put<T>(UnwrappingService.apiUrl + endpoint, body, headers)
             .pipe(
-                retry(3),
                 tap(res => console.log(res)),
                 map((res: T) => res)
             );
@@ -62,7 +60,6 @@ export class UnwrappingService {
     delete(endpoint: string, id: number | number[], headers: { [key: string]: string }): Observable<Object> {
         return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, { headers, body: { id } })
             .pipe(
-                retry(3),
                 tap(res => { console.log(res); }),
                 map((res: Object) => {
                     return res;

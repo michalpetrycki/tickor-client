@@ -1,4 +1,6 @@
 import { EndpointRequest } from "src/app/Objects/API/EndpointRequest";
+import { EntityResourceType } from "src/app/Objects/entities/Entity";
+import { RequestApiService } from "src/app/Services/request-api/request-api.service";
 
 export class IssueCreateRequest implements EndpointRequest {
 
@@ -15,7 +17,7 @@ export class IssueCreateRequest implements EndpointRequest {
     }
 
     getEndpoint(): string {
-        return '#';
+        return EntityResourceType.issue + RequestApiService.createUrl;
     }
 
 }

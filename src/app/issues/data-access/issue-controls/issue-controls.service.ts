@@ -40,14 +40,14 @@ export class IssueControlsService {
             }),
 
             new DropdownControl({
-                key: 'status',
+                key: 'statusID',
                 label: 'Status',
                 options$: this.dropdownOptionService.list(new IssueStatusListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
                 order: 3
             }),
 
             new DropdownControl({
-                key: 'category',
+                key: 'categoryID',
                 label: 'Category',
                 options$: this.dropdownOptionService.list(new IssueCategoryListRequest()).pipe(map((res: DropdownOptionResponse[]) => ParamHelperService.toDropdownOptions(res))),
                 order: 4

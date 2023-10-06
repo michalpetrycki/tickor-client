@@ -27,8 +27,8 @@ export class IssueService {
     }
 
     public create(properties: IssueCreateProperties): Observable<IssueResponse> {
-        const issueCreateProperties = new IssueCreateRequest(properties);
-        return this.apiService.post(issueCreateProperties);
+        const request: IssueCreateRequest = new IssueCreateRequest(properties);
+        return this.apiService.post(request);
     }
 
     // public edit(properties: IssueEditProperties): Observable<IssueResponse | undefined> {
