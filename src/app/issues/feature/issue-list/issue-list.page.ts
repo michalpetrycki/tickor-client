@@ -9,7 +9,7 @@ import { IssueControlsService } from 'src/app/issues/data-access/issue-controls/
 import { IssueCreateProperties } from 'src/app/issues/utils/IssueCreateRequest';
 import { ToastService } from 'src/app/shared/utils/toast-service/toast.service';
 import { AddEntityButtonComponent } from 'src/app/shared/ui/add-entity-button/add-entity-button.component';
-import { switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-issue-list',
@@ -38,6 +38,7 @@ export class IssueListPage {
 
     public controls$!: Observable<ControlBase<string>[] | null>;
     public issues$ = this.route.paramMap.pipe(
+        shareReplay(),
         switchMap((params) =>
             this.issueService.list({ projectID: Number(params.get('projectID')) })
         )
@@ -64,7 +65,10 @@ export class IssueListPage {
 
     }
 
-    rowClick = (issueID: number) => { debugger; this.router.navigate([`/issues/${issueID}`, { issue: this.currentIssues.find((issue: IssueResponse) => issue.id === issueID) }]) };
+    rowClick = (issueID: number) => { 
+        this.issueService.selectedIssue$ = this.issues$.pipe(map((issues: IssueResponse[]) => issues.find((issue: IssueResponse) => issue.id === issueID)));
+        this.router.navigate([`/issues/${issueID}`]) 
+    };
 
     createNewIssue(properties: IssueCreateProperties): void {
 

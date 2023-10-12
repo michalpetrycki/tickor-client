@@ -1,3 +1,9 @@
-<!-- <p>
-    {{issue}}
-</p> -->
+<div *ngIf="issue$ | async as issue">
+    {{issue.id}}
+    {{issue.statusID}}
+    {{issue.subject}}
+    {{issue.updated}}
+    {{issue.name}}
+    {{issue.categoryID}}
+    {{issue.projectID}}
+</div>

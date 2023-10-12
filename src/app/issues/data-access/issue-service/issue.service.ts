@@ -13,6 +13,18 @@ import { IssueResponse } from 'src/app/issues/utils/IssueResponse';
 })
 export class IssueService {
 
+    private _selectedIssue$?: Observable<IssueResponse | undefined>;
+
+    public get selectedIssue$(): Observable<IssueResponse | undefined> | undefined {
+        return this._selectedIssue$;
+    }
+
+    public set selectedIssue$(value: Observable<IssueResponse | undefined> | undefined) {
+        this._selectedIssue$ = value;
+    }
+
+
+
     constructor(private apiService: RequestApiService<IssueResponse>) { }
 
     public list(filters?: IssueListFilter): Observable<IssueResponse[]> {
