@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FilteringEventArgs, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Param } from 'src/app/Objects/params/Param';
 import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 
 @Component({

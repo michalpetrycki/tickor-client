@@ -11,6 +11,7 @@ export class IssueListRequest implements ListRequest, PaginatedRequest {
     public readonly subject?: string;
     public readonly name?: string;
     public readonly categoryID?: number;
+    public readonly projectID?: number;
     public readonly createdAt?: string;
     public readonly updatedAt?: string;
 
@@ -23,6 +24,7 @@ export class IssueListRequest implements ListRequest, PaginatedRequest {
             this.subject = filters.subject;
             this.name = filters.name;
             this.categoryID = filters.categoryID;
+            this.projectID = filters.projectID;
             this.createdAt = filters.createdAt;
             this.updatedAt = filters.updatedAt;
         }

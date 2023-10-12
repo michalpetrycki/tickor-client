@@ -5,4 +5,5 @@ export interface IssueResponse {
     updated: string;
     name: string;
     categoryID: number;
+    projectID: number;
 }

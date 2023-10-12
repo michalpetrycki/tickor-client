@@ -31,7 +31,7 @@ export class TabMenuComponent implements OnInit, OnChanges {
             this.tabs = [
                 { path: '/issues', title: 'Issues' }
             ];
-            this.router.navigate(['/issues'], { state: { selection: this.selection } });
+            this.router.navigate(['/issues', { projectID: this.selection.projectID }]);
         }
     }
 

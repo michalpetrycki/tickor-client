@@ -1,27 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { SelectEventArgs } from '@syncfusion/ej2-lists';
 
 @Component({
-  selector: 'app-data-grid',
-  templateUrl: './data-grid.component.html',
-  styleUrls: ['./data-grid.component.scss']
+    selector: 'app-data-grid',
+    templateUrl: './data-grid.component.html',
+    styleUrls: ['./data-grid.component.scss']
 })
-export class DataGridComponent implements OnInit {
+export class DataGridComponent {
 
-  @Input() displayedColumns!: { field: string, headerText: string }[];
-  @Input() items!: {}[];
-  @Input() pageSettings!: PageSettingsModel;
-  @Input() allowPaging!: boolean;
-  @Input() allowSelection!: boolean;
-  @Input() allowSorting!: boolean;
+    @Input() displayedColumns!: { field: string, headerText: string }[];
+    @Input() items!: {}[];
+    @Input() pageSettings!: PageSettingsModel;
+    @Input() allowPaging!: boolean;
+    @Input() allowSelection!: boolean;
+    @Input() allowSorting!: boolean;
+    @Input() rowClick!: (selectedItemID: number) => void;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void { }
-
-  public rowSelected(event: SelectEventArgs) {
-    alert(event);
-  }
+    public rowSelected(event: SelectEventArgs) {
+        this.rowClick((event.data as any).id);
+    }
 
 }

@@ -5,7 +5,8 @@
         [pageSettings]="pageSettings"
         [allowPaging]="allowPaging"
         [allowSelection]=allowSelection
-        [allowSorting]="allowSorting">
+        [allowSorting]="allowSorting"
+        [rowClick]="rowClick">
     </app-data-grid>
     <div *ngIf="issues.length === 0">No data</div>
 </div>

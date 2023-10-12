@@ -1,9 +1,17 @@
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { IssueDetailPageRoutingModule } from "src/app/issues/feature/issue-detail/issue-detail-routing.module";
+import { IssueDetailPage } from "src/app/issues/feature/issue-detail/issue-detail.page";
+import { MaterialModule } from "src/app/modules/material.module";
+import { SharedModule } from "src/app/modules/shared.module";
 
 @NgModule({
     imports: [
-        FormsModule
+        IssueDetailPageRoutingModule,
+        SharedModule,
+        MaterialModule
+    ],
+    declarations: [
+        IssueDetailPage
     ]
 })
 

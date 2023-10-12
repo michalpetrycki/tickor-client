@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { IssueListPage } from './issue-list.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: IssueListPage
-  }
+    {
+        path: '',
+        component: IssueListPage
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class IssueListPageRoutingModule {}
+export class IssueListPageRoutingModule { }

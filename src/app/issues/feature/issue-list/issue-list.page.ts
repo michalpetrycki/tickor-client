@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Route, Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { PageSettingsModel } from '@syncfusion/ej2-angular-grids';
 import { IssueResponse } from 'src/app/issues/utils/IssueResponse';
@@ -9,6 +9,7 @@ import { IssueControlsService } from 'src/app/issues/data-access/issue-controls/
 import { IssueCreateProperties } from 'src/app/issues/utils/IssueCreateRequest';
 import { ToastService } from 'src/app/shared/utils/toast-service/toast.service';
 import { AddEntityButtonComponent } from 'src/app/shared/ui/add-entity-button/add-entity-button.component';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-issue-list',
@@ -24,16 +25,23 @@ export class IssueListPage {
     allowPaging = true;
     allowSelection = true;
     allowSorting = true;
-    selectedClient: IssueResponse | undefined;
+
+    projectID?: number;
+
 
     entityTypeName!: IssueCreateProperties;
     currentIssues: any[];
     selection: any;
-    issues$: Observable<IssueResponse[]>
+
     title!: string;
     message!: string;
 
     public controls$!: Observable<ControlBase<string>[] | null>;
+    public issues$ = this.route.paramMap.pipe(
+        switchMap((params) =>
+            this.issueService.list({ projectID: Number(params.get('projectID')) })
+        )
+    );
 
     @ViewChild(AddEntityButtonComponent) addIssueButton?: AddEntityButtonComponent<IssueCreateProperties>;
 
@@ -41,20 +49,22 @@ export class IssueListPage {
         private router: Router,
         private issueService: IssueService,
         private issueControlService: IssueControlsService,
-        private toastService: ToastService
+        private toastService: ToastService,
+        private route: ActivatedRoute
     ) {
         this.displayedColumns = [];
         this.currentIssues = [];
 
         this.selection = this.router.getCurrentNavigation()?.extras?.state?.selection;
 
-        this.issues$ = this.issueService.list();
         this.controls$ = this.issueControlService.getControls();
 
         this.title = 'Add an issue';
         this.message = 'Wanna add new issue?';
 
     }
+
+    rowClick = (issueID: number) => { debugger; this.router.navigate([`/issues/${issueID}`, { issue: this.currentIssues.find((issue: IssueResponse) => issue.id === issueID) }]) };
 
     createNewIssue(properties: IssueCreateProperties): void {
 
