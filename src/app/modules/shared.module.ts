@@ -47,7 +47,8 @@ import { ToastNotificationComponent } from 'src/app/shared/utils/toast-notificat
         QuickSearchComponent,
         HeaderComponent,
         TopMenuComponent,
-        ToastNotificationComponent
+        ToastNotificationComponent,
+        SyncfusionModule
     ],
     imports: [
         CommonModule,

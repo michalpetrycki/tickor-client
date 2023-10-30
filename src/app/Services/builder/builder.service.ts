@@ -36,7 +36,7 @@ export class BuilderService<T> {
         return this.newEntityProperties.asObservable();
     }
 
-    openBuilder(controls: ControlBase<string>[] | null, title: string, message: string): void {
+    openBuilder(controls: Observable<ControlBase<string>[]>, title: string, message: string): void {
 
         const dialogConfig = new MatDialogConfig();
 

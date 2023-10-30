@@ -30,17 +30,17 @@ export class RequestApiService<ResponseType> {
         return this.http.get<ResponseType>(requestBody.getEndpoint(), headers);
     }
 
-    public getSingle(requestBody: ListRequest, request: any): Observable<PaginatedResponse<ResponseType>> {
+    public getSingle(requestBody: ListRequest): Observable<ResponseType | undefined> {
         const headers = { 'Authorization': this.authService.token };
-        return this.http.get<ResponseType>(requestBody.getEndpoint(), headers);
+        return this.http.getById<ResponseType>(requestBody, headers);
     }
 
     public post(requestBody: CreateRequest): Observable<ResponseType> {
         const headers = { 'Authorization': this.authService.token };
-        return this.http.post<ResponseType>(requestBody.getEndpoint(), requestBody, headers);
+        return this.http.post<ResponseType>(requestBody, headers);
     }
 
-    public put(requestBody: EditRequest): Observable<ResponseType> {
+    public put(requestBody: EditRequest): Observable<ResponseType | undefined> {
         const headers = { 'Authorization': this.authService.token };
         return this.http.put<ResponseType>(requestBody.getEndpoint(), requestBody, headers);
     }

@@ -6,6 +6,7 @@ export interface Param {
     name: string;
     required: boolean;
     type: ParamType;
+    value?: any;
     values$?: Observable<DropdownOption[]>;
     onValueChanges?: (selection: number) => void;
     readOnly?: boolean;

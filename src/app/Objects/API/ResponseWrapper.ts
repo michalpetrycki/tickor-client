@@ -1,6 +1,6 @@
 export interface ResponseWrapper<T> {
     results?: T[];
-    result?: any;
+    result?: T;
     totalResultsCount: number;
     status: string;
     error?: string;

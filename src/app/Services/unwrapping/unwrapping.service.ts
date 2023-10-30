@@ -25,7 +25,7 @@ export class UnwrappingService {
                 tap((res: ResponseWrapper<T>) => console.log(res)),
                 map((res: ResponseWrapper<T>) => res.results || [])
             );
-    }
+    };
 
     get<T>(endpoint: string, headers: { [key: string]: string }): Observable<PaginatedResponse<T>> {
         return this.httpClient.get<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, headers)
@@ -39,23 +39,35 @@ export class UnwrappingService {
                     };
                 }),
             );
-    }
+    };
 
-    post<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
-        return this.httpClient.post<T>(UnwrappingService.apiUrl + endpoint, body, headers)
+    getById<T>(body: ListRequest, headers: { [key: string]: string }): Observable<T | undefined> {
+        return this.httpClient.post<ResponseWrapper<T>>(UnwrappingService.apiUrl + body.getEndpoint(), body, headers)
+            .pipe(
+                tap(res => console.log(res)),
+                map((res: ResponseWrapper<T>) => {
+                    return res.results?.pop();
+                })
+            );
+    };
+
+    post<T>(body: ListRequest, headers: { [key: string]: string }): Observable<T> {
+        return this.httpClient.post<T>(UnwrappingService.apiUrl + body.getEndpoint(), body, headers)
             .pipe(
                 tap(res => console.log(res)),
                 map((res: T) => res)
             );
-    }
+    };
 
-    put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T> {
-        return this.httpClient.put<T>(UnwrappingService.apiUrl + endpoint, body, headers)
+    put<T>(endpoint: string, body: {}, headers: { [key: string]: string }): Observable<T | undefined> {
+        return this.httpClient.put<ResponseWrapper<T>>(UnwrappingService.apiUrl + endpoint, body, headers)
             .pipe(
                 tap(res => console.log(res)),
-                map((res: T) => res)
+                map((res: ResponseWrapper<T>) => {
+                    return res.result;
+                })
             );
-    }
+    };
 
     delete(endpoint: string, id: number | number[], headers: { [key: string]: string }): Observable<Object> {
         return this.httpClient.delete(`${UnwrappingService.apiUrl}/${endpoint}/${id}`, { headers, body: { id } })
@@ -65,10 +77,10 @@ export class UnwrappingService {
                     return res;
                 })
             );
-    }
+    };
 
     handleError(a: any): Observable<Error> {
         return throwError(() => new Error('Something bad happened; please try again later.'));
-    }
+    };
 
 }

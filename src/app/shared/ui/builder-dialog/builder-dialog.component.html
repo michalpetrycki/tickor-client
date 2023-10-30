@@ -13,7 +13,7 @@
     <div>
         <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" *ngIf="formGroup" class="controls-form">
       
-            <div *ngFor="let control of controls" class="form-row">
+            <div *ngFor="let control of controls$ | async as controls" class="form-row">
                 <app-form-control [control]="control" [formGroup]="formGroup"></app-form-control>
             </div>
 

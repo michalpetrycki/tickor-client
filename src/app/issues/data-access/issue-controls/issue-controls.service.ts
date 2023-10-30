@@ -19,7 +19,7 @@ export class IssueControlsService {
         private dropdownOptionService: DropdownOptionService
     ) { }
 
-    getControls(): Observable<ControlBase<string>[]> {
+    getCreateControls(): Observable<ControlBase<string>[]> {
 
         const controls: ControlBase<string>[] = [
 
@@ -57,6 +57,14 @@ export class IssueControlsService {
 
         return of(controls.sort((a, b) => a.order - b.order));
 
+    }
+
+    getActivityControls(): Observable<ControlBase<string>[]> {
+        return this.getCreateControls();
+    }
+
+    getDetailControls(): Observable<ControlBase<string>[]> {
+        return this.getCreateControls();
     }
 
 }

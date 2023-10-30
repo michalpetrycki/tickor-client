@@ -2,11 +2,11 @@
       
     <div [ngSwitch]="control.controlType">
 
-        <label for="control.key" class="input-label">{{control.label}}</label>
+        <!-- <label for="control.key" class="input-label">{{control.label}}</label>
         <ejs-textbox *ngSwitchCase="'textbox'"
             [formControlName]="control.key"
             [id]="control.key"
-        ></ejs-textbox>
+        ></ejs-textbox> -->
   
         <!-- <ejs-dropdownlist *ngSwitchCase="'dropdown'"
             id="control.key"
@@ -16,6 +16,9 @@
             popupHeight='220px'
             (select)="select($event)">
         </ejs-dropdownlist> -->
+        <ng-container *ngSwitchCase="'textbox'">
+            <app-field-input [control]="control" [formGroup]="formGroup"></app-field-input>
+        </ng-container>
         <ng-container *ngSwitchCase="'dropdown'">
             <app-field-dropdown [control]="control" [formGroup]="formGroup"></app-field-dropdown>
         </ng-container>

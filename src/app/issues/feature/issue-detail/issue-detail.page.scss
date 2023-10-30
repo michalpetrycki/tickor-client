@@ -1,0 +1,30 @@
+.detail-card{
+    display: flex;
+    flex-direction: row;
+    clear: both;
+    height: 100vh;
+}
+
+.vertical-divider {
+    width: 0.2rem;
+    background-color: white;
+    opacity: 0%;
+}
+
+.vertical-divider:hover {
+    display: inline-block;
+    opacity: 100%;
+    cursor: ew-resize;
+}
+
+.issue-activity, .issue-details {
+    flex: 1;
+    width: 49%;
+    padding: 1em;
+    margin: 1em;
+}
+
+.issue-details {
+    border: 1px solid red;
+    border-radius: 0.2rem;
+}

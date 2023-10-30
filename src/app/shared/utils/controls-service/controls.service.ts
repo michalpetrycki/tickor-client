@@ -7,9 +7,13 @@ import { ControlBase } from 'src/app/shared/utils/controls/control-base';
 @Injectable()
 export class ControlService {
 
-    toFormGroup(controls: ControlBase<string>[]) {
+    toFormGroup(controls: ControlBase<string>[], currentItem: any) {
 
         const group: any = {};
+
+        controls.map((control: ControlBase<string>) => {
+            control.value = currentItem[control.key];
+        });
 
         controls.forEach(control => {
             group[control.key] = control.required ?

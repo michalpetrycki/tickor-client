@@ -5,7 +5,7 @@ import { ParamType } from "src/app/Objects/params/ParamType";
 
 export class ParamHelperService {
 
-    public static createParam(name: string, required: boolean, type: ParamType, tooltip: string, values$?: Observable<DropdownOption[]>, onValueChanges?: (selection: number) => void, readOnly?: boolean, fields?: Object): Param {
+    public static createParam(name: string, required: boolean, type: ParamType, tooltip: string, values$?: Observable<DropdownOption[]>, onValueChanges?: (selection: number) => void, readOnly?: boolean, fields?: Object, value?: any): Param {
         return {
             name,
             required,
@@ -14,7 +14,8 @@ export class ParamHelperService {
             values$,
             onValueChanges,
             readOnly,
-            fields
+            fields,
+            value
         };
     }
 

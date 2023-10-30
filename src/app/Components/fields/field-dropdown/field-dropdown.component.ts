@@ -35,7 +35,7 @@ export class FieldDropdownComponent implements OnInit {
 
     private loadItems(): void {
         this.control.options$?.subscribe((res: any) => {
-            this.ddl.value = null;
+            this.ddl.value = this.control.value;
             this.filteredItems = res;
         });
     }

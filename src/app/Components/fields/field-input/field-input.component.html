@@ -1,5 +1,11 @@
 <div class="form-control" [formGroup]="formGroup">
-    <ejs-tooltip content="{{param.tooltip}}" target="#inputTarget">
-        <ejs-textbox id="input-target" class="form-control" formControlName="{{param.name}}" placeholder="{{param.name}}" floatLabelType="Auto"></ejs-textbox>
+    <ejs-tooltip content="{{control.label}}" target="#inputTarget">
+        <ejs-textbox id="input-target" 
+            class="form-control" 
+            formControlName="{{control.key}}" 
+            placeholder="{{control.label}}" 
+            floatLabelType="Auto"
+            [value]="control.value">
+        </ejs-textbox>
     </ejs-tooltip>
 </div>

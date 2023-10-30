@@ -41,7 +41,7 @@ export class ClientService {
         return this.apiService.post(clientCreateProperties);
     }
 
-    public edit(properties: ClientEditProperties): Observable<ClientResponse | Error> {
+    public edit(properties: ClientEditProperties): Observable<ClientResponse | undefined> {
         const clientEditProperties = new ClientEditRequest(properties);
         return this.apiService.put(clientEditProperties);
     }

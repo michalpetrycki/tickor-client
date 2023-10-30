@@ -1,9 +1,37 @@
-<div *ngIf="issue$ | async as issue">
-    {{issue.id}}
-    {{issue.statusID}}
-    {{issue.subject}}
-    {{issue.updated}}
-    {{issue.name}}
-    {{issue.categoryID}}
-    {{issue.projectID}}
+<div *ngIf="issue$ | async as issue" class="e-card detail-card">
+    <div class="issue-activity">
+        <div class="description">
+            <h3>Description</h3>
+            <p>{{issue.subject}}</p>
+        </div>
+        <div class="comment">
+            <ejs-textbox placeholder="Add a comment" floatLabelType="Auto" (click)="showRte()" *ngIf="!(displayRte$ | async)"></ejs-textbox>
+            <form (ngSubmit)="updateIssue()" [formGroup]="activityFormGroup" *ngIf="(displayRte$ | async)" class="activity-form">
+                <ejs-richtexteditor id="rte" #rte formControlName="details">
+                </ejs-richtexteditor>
+                <button ejs-button cssClass="e-info" type="submit" [disabled]="!activityFormGroup.valid">Add activity</button>
+                <button ejs-button type="button" (click)="cancel()">Cancel</button>
+            </form>
+        </div>
+        <div class="activity">
+            <h3>Activity</h3>
+            <p *ngFor="let activity of issue.activity">
+                {{activity.activityDate}} === {{activity.activityType}}
+            </p>
+        </div>
+    </div>
+    <div class="vertical-divider"></div>
+    <div class="issue-details">
+        <form (ngSubmit)="saveDetails()" [formGroup]="detailsFormGroup" *ngIf="detailsFormGroup" class="controls-form">
+  
+            <div *ngFor="let control of detailsControls" class="form-row">
+                <app-form-control [control]="control" [formGroup]="detailsFormGroup"></app-form-control>
+            </div>
+    
+            <mat-dialog-actions>
+                <button ejs-button cssClass="e-info" type="submit" [disabled]="!detailsFormGroup.valid">Create</button>
+            </mat-dialog-actions>
+    
+        </form>
+    </div>
 </div>
