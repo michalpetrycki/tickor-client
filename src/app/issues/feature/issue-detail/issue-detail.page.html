@@ -1,23 +1,64 @@
 <div *ngIf="issue$ | async as issue" class="e-card detail-card">
     <div class="issue-activity">
-        <div class="description">
-            <h3>Description</h3>
-            <p>{{issue.subject}}</p>
-        </div>
-        <div class="comment">
-            <ejs-textbox placeholder="Add a comment" floatLabelType="Auto" (click)="showRte()" *ngIf="!(displayRte$ | async)"></ejs-textbox>
-            <form (ngSubmit)="updateIssue()" [formGroup]="activityFormGroup" *ngIf="(displayRte$ | async)" class="activity-form">
-                <ejs-richtexteditor id="rte" #rte formControlName="details">
-                </ejs-richtexteditor>
-                <button ejs-button cssClass="e-info" type="submit" [disabled]="!activityFormGroup.valid">Add activity</button>
-                <button ejs-button type="button" (click)="cancel()">Cancel</button>
-            </form>
+        <div class="description-container">
+            
+            <span class="issue-name-edit hover-background" *ngIf="!isNameEditing" (click)="isNameEditing = true">
+                <h1>{{issue.name}}</h1>
+            </span>
+            <span class="issue-name-edit hover-background" *ngIf="isNameEditing">
+                <ejs-textbox class="issue-name-textbox" [value]="issue.name" [multiline]="true"></ejs-textbox>
+                <span class="issue-name-edit-buttons">
+                    <span class="issue-name-edit-button e-icons e-check" (click)="closeNameEditingTextbox(true)"></span>
+                    <span class="issue-name-edit-button e-icons e-close" (click)="closeNameEditingTextbox(false)"></span>
+                </span>
+            </span>
+
+            <ejs-uploader #defaultupload  [autoUpload]='false'></ejs-uploader>
+
+            <h3>Description:</h3>
+            <h4 class="description-text">{{issue.subject}}</h4>
+
         </div>
         <div class="activity">
-            <h3>Activity</h3>
-            <p *ngFor="let activity of issue.activity">
-                {{activity.activityDate}} === {{activity.activityType}}
-            </p>
+            <div class="activity-header">
+                <h3>Activity</h3>
+                <button ejs-button class="btn-sorting" (click)="toggleSort()">
+                    <p>{{sortingDesc ? 'Newest first' : 'Oldest first'}}</p>
+                    <span class="e-icons e-sorting-3" *ngIf="sortingDesc"></span>
+                    <span class="e-icons e-sorting-2" *ngIf="!sortingDesc"></span>
+                </button>
+            </div>
+            <div class="comment">
+                <ejs-textbox placeholder="Add a comment" floatLabelType="Auto" (click)="showRte()" *ngIf="!(displayRte$ | async)"></ejs-textbox>
+                <form (ngSubmit)="addActivity()" [formGroup]="activityFormGroup" *ngIf="(displayRte$ | async)" class="activity-form">
+                    <ejs-richtexteditor id="rte" #rte formControlName="details">
+                    </ejs-richtexteditor>
+                    <button ejs-button cssClass="e-info" type="submit" [disabled]="!activityFormGroup.valid">Add activity</button>
+                    <button ejs-button type="button" (click)="cancel()">Cancel</button>
+                </form>
+            </div>
+            <div class="activity-row" *ngFor="let activity of issue.activity; trackBy: trackActivity">
+                <div class="activity-avatar">
+                    {{activity.author.username.charAt(0).toUpperCase()}}
+                </div>
+                <div class="activity-data">
+                    <div class="activity-data-top">
+                        <span class="activity-action">{{activity.author.username}}</span>
+                        <span class="activity-action">{{activity.activityDate | activityDate}}</span>
+                        <span class="activity-action e-icons e-link copy-link" (click)="copyLink(activity)"></span>
+                    </div>
+                    <div class="activity-data-middle">
+                        {{ activity.activityType | activityType: activity.activityDetails }}
+                    </div>
+                    <div class="activity-data-bottom">
+                        <span class="activity-action action-decoration" (click)="editActivity(activity)">Edit</span>
+                        <span class="activity-divider">&nbsp;</span>
+                        <span class="activity-action action-decoration" (click)="deleteActivity(activity)">Delete</span>
+                        <span class="activity-divider">&nbsp;</span>
+                        <span class="activity-action">O</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="vertical-divider"></div>

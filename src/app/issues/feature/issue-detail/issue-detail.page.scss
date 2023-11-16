@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     clear: both;
-    height: 100vh;
+    height: 88vh;
 }
 
 .vertical-divider {
@@ -22,9 +22,112 @@
     width: 49%;
     padding: 1em;
     margin: 1em;
+    max-height: 100%;
+    overflow-y: scroll;
 }
 
 .issue-details {
     border: 1px solid red;
     border-radius: 0.2rem;
+}
+
+.activity-row {
+    display: flex;
+    margin-bottom: 1.5em;
+}
+
+.activity-header {
+    display: flex;
+    margin: 1rem;
+}
+
+.activity-header h3 {
+    display: flex;
+    flex: 1
+}
+
+.activity-header button {
+    float: right;
+    flex: 0 0 20%;
+}
+
+.activity-avatar {
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.activity-data {
+    display: block;
+    float: left;
+    margin-left: 0.8rem;
+}
+
+.activity-data .copy-link {
+    display: none;
+}
+
+.activity-data:hover .copy-link {
+    display: inline-block;
+}
+
+.activity-data-bottom {
+    float: left;
+}
+
+.activity-action:nth-of-type(2), .activity-action:nth-of-type(3) {
+    margin-left: 1rem;
+}
+
+.btn-sorting {
+    display: flex;
+}
+
+.e-icons.e-sorting-2, .e-icons.e-sorting-3 {
+    margin-top: 17px;
+    margin-left: 1rem;
+}
+
+.activity-divider {
+    display: inline list-item;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.activity-action.action-decoration:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.hover-background:hover {
+    background-color: red;
+}
+
+.issue-name-edit {
+    height: 35%;
+    background-color: green;
+    display: inline-block;
+    width: 100%;
+}
+
+.issue-name-textbox.e-control.e-textbox {
+    font-size: 30px;
+    min-height: 40px;
+    scrollbar-width: none;
+}
+
+.issue-name-edit-button {
+    height: 2rem;
+    width: 2rem;
+    padding: 0.8rem;
+    font-size: 22px;
+}
+
+.issue-name-edit-buttons {
+    float: right;
 }

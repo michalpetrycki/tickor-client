@@ -16,7 +16,7 @@ export class MemberEditRequest implements EndpointRequest {
     }
 
     getEndpoint(): string {
-        return EntityResourceType.member + RequestApiService.editUrl;
+        return EntityResourceType.member + RequestApiService.updateUrl;
     }
 
 }

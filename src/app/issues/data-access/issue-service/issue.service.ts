@@ -8,6 +8,8 @@ import { IssueListRequest, IssueListFilter } from 'src/app/issues/utils/IssueLis
 import { IssueUpdateProperties, IssueUpdateRequest } from 'src/app/issues/utils/IssueEditRequest';
 import { IssueCreateProperties, IssueCreateRequest } from 'src/app/issues/utils/IssueCreateRequest';
 import { IssueDeleteProperties, IssueDeleteRequest } from 'src/app/issues/utils/IssueDeleteRequest';
+import { ActivityCreateProperties } from 'src/app/shared/utils/response/activity-create.properties';
+import { AddActivityRequest } from 'src/app/issues/utils/AddActivityRequest';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +24,7 @@ export class IssueService {
     }
 
     public listPaginated(paginate: Pagination, filters?: IssueListFilter): Observable<PaginatedResponse<IssueResponse>> {
-        const issueListRequest = new IssueListRequest(filters);
+        const issueListRequest: IssueListRequest = new IssueListRequest(filters);
         issueListRequest.paginate = paginate;
         return this.apiService.getPaginated(issueListRequest);
     }
@@ -38,13 +40,18 @@ export class IssueService {
     }
 
     public update(properties: IssueUpdateProperties): Observable<IssueResponse | undefined> {
-        const request = new IssueUpdateRequest(properties);
+        const request: IssueUpdateRequest = new IssueUpdateRequest(properties);
         return this.apiService.put(request);
     }
 
     public delete(properties: IssueDeleteProperties): Observable<Object> {
-        const issueDeleteRequest = new IssueDeleteRequest(properties);
+        const issueDeleteRequest: IssueDeleteRequest = new IssueDeleteRequest(properties);
         return this.apiService.delete(issueDeleteRequest);
+    }
+
+    public addActivity(issueID: number, properties: ActivityCreateProperties): Observable<IssueResponse | undefined> {
+        const addActivityRequest: AddActivityRequest = new AddActivityRequest(properties);
+        return this.apiService.post(addActivityRequest);
     }
 
 }

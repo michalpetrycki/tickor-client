@@ -6,9 +6,8 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { DialogModule, TooltipModule } from '@syncfusion/ej2-angular-popups';
 import { TabModule, TabAllModule } from '@syncfusion/ej2-angular-navigations';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-import { TextBoxModule, NumericTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 import { DatePickerModule, DatePickerAllModule } from '@syncfusion/ej2-angular-calendars';
-
+import { TextBoxModule, NumericTextBoxModule, UploaderModule } from '@syncfusion/ej2-angular-inputs';
 
 @NgModule({
     exports: [
@@ -20,6 +19,7 @@ import { DatePickerModule, DatePickerAllModule } from '@syncfusion/ej2-angular-c
         DialogModule,
         TextBoxModule,
         TooltipModule,
+        UploaderModule,
         DatePickerModule,
         DropDownListModule,
         DatePickerAllModule,

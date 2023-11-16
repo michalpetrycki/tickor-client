@@ -21,5 +21,6 @@ export enum EntityResourceType {
     member = 'person',
     issue = 'issue',
     issueCategory = 'issue-category',
-    issueStatus = 'issue-status'
+    issueStatus = 'issue-status',
+    activity = 'activity'
 }

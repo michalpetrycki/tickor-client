@@ -2,7 +2,6 @@ import { EntityResourceType } from "src/app/Objects/entities/Entity";
 import { EndpointRequest } from "src/app/Objects/API/EndpointRequest";
 import { RequestApiService } from "src/app/Services/request-api/request-api.service";
 import { ActivityResponse } from "src/app/shared/utils/response/activity.response";
-import { ActivityCreateProperties } from "src/app/shared/utils/response/activity-create.properties";
 
 export class IssueUpdateRequest implements EndpointRequest {
 
@@ -11,7 +10,8 @@ export class IssueUpdateRequest implements EndpointRequest {
     public readonly name!: string;
     public readonly statusID!: number;
     public readonly categoryID!: number;
-    public readonly activity!: ActivityCreateProperties[];
+    public readonly projectID!: number;
+    public activity!: ActivityResponse[];
 
     constructor(updateProperties: IssueUpdateProperties) {
         this.id = updateProperties.id;
@@ -19,11 +19,12 @@ export class IssueUpdateRequest implements EndpointRequest {
         this.name = updateProperties.name;
         this.statusID = updateProperties.statusID;
         this.categoryID = updateProperties.categoryID;
+        this.projectID = updateProperties.projectID;
         this.activity = updateProperties.activity;
     }
 
     getEndpoint(): string {
-        return EntityResourceType.issue + RequestApiService.editUrl;
+        return EntityResourceType.issue + RequestApiService.updateUrl;
     }
 
 }

@@ -14,7 +14,7 @@ import { CreateRequest } from 'src/app/Objects/API/project/CreateRequest';
 export class RequestApiService<ResponseType> {
 
     static createUrl = '/create';
-    static editUrl = '/edit';
+    static updateUrl = '/update';
     static listUrl = '/list';
     static deleteUrl = '/delete';
 

@@ -4,6 +4,8 @@ import { IssueDetailPage } from "src/app/issues/feature/issue-detail/issue-detai
 import { MaterialModule } from "src/app/modules/material.module";
 import { SharedModule } from "src/app/modules/shared.module";
 import { ControlService } from "src/app/shared/utils/controls-service/controls.service";
+import { ActivityDatePipe } from "src/app/shared/utils/pipes/activity-date/activity-date.pipe";
+import { ActivityTypePipe } from "src/app/shared/utils/pipes/activity-type/activity-type.pipe";
 
 @NgModule({
     imports: [
@@ -12,10 +14,14 @@ import { ControlService } from "src/app/shared/utils/controls-service/controls.s
         MaterialModule
     ],
     declarations: [
-        IssueDetailPage
+        IssueDetailPage,
+        ActivityTypePipe,
+        ActivityDatePipe
     ],
     providers: [
-        ControlService
+        ControlService,
+        ActivityTypePipe,
+        ActivityDatePipe
     ]
 })
 

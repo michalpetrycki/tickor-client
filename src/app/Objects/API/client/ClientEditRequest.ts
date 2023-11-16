@@ -14,7 +14,7 @@ export class ClientEditRequest implements EndpointRequest {
     }
 
     getEndpoint(): string {
-        return EntityResourceType.client + RequestApiService.editUrl;
+        return EntityResourceType.client + RequestApiService.updateUrl;
     }
 
 }

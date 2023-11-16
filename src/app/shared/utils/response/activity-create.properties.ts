@@ -1,12 +1,9 @@
+import { Nullable } from "src/app/shared/utils/nullable.type";
+
 export interface ActivityCreateProperties {
-    clientID?: number;
-    personID?: number;
-    projectID?: number;
-    issueID?: number;
-    issueCategoryID?: number;
-    issueStatusID?: number;
-    activityDate?: Date;
-    updated?: Date;
-    activityType?: string;
-    activityDetails?: string;
+    authorID: Nullable<number>;
+    activityDate: Nullable<string>;
+    updated: Nullable<Date>;
+    activityType: Nullable<string>;
+    activityDetails: Nullable<string>;
 }

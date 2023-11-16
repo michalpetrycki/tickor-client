@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageModule } from 'src/app/home/feature/home-page/home.module';
 import { SharedModule } from 'src/app/modules/shared.module';
+import { ActivityDatePipe } from './shared/utils/pipes/activity-date/activity-date.pipe';
 
 @NgModule({
     declarations: [

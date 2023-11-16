@@ -16,7 +16,7 @@ export class ProjectEditRequest implements EndpointRequest {
     }
 
     getEndpoint(): string {
-        return EntityResourceType.project + RequestApiService.editUrl;
+        return EntityResourceType.project + RequestApiService.updateUrl;
     }
 
 }
